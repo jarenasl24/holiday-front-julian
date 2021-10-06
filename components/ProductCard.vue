@@ -30,26 +30,26 @@
       </v-carousel>
     </v-card-title>
     <v-card-text>
-      <div class="font-size-price text-primary font-weight-bold mb-2">
+      <div class="font-size-price text-black font-weight-bold mb-2">
         $ 9,65 <span class="text-decoration-line-through font-weight-regular sup">
           $ 13,2
         </span>
       </div>
-      <div class="font-weight-bold text-primary font-size-description">Really RAD Robots</div>
-      <div class="text-primary font-size-description">Prankob - Electronic Remote Control Pranking Robot</div>
+      <div class="font-weight-bold text-black font-size-description">Really RAD Robots</div>
+      <div class="text-black font-size-description">Prankob - Electronic Remote Control Pranking Robot</div>
     </v-card-text>
-    <v-card-actions class="ma-2">
+    <v-card-actions class="mt-0">
       <div
-        class="text-primary border-button px-3 py-2 bg-white hover-pointer min-width-100"
+        :class="`text-secondary font-weight-bold text-uppercase border-button px-3 py-2 bg-white hover-pointer min-width-180 text-center ${selectedTemp ? 'bg-primary' : ''}`"
         @click="() => selectedTemp = !selectedTemp"
       >
         <v-row>
           <v-col cols="8">
             <div>{{ selectedTemp? 'Agregado': 'Agregar' }}</div>
           </v-col>
-          <v-col cols="2">
-            <v-icon v-if="!selectedTemp" color="primary">mdi-plus-circle</v-icon>
-            <v-icon v-if="selectedTemp" color="primary">mdi-check-circle-outline</v-icon>
+          <v-col cols="4">
+            <v-icon v-if="!selectedTemp" color="secondary">mdi-plus-circle</v-icon>
+            <v-icon v-if="selectedTemp" color="secondary">mdi-check-circle</v-icon>
           </v-col>
         </v-row>
       </div>
@@ -84,8 +84,6 @@ export default {
   @import "assets/variables.scss";
 
   .card{
-    background-color: white !important;
-    border-color: #C9E6FD !important;
     border-radius: 15px !important;
   }
 

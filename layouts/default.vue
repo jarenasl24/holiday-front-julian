@@ -1,16 +1,17 @@
 <template>
-  <v-app>
+  <v-app class="bg-secondary">
     <v-navigation-drawer
       v-model="drawer"
       fixed
       app
       temporary
-      width="30%"
+      width="500"
+      class="pt-10 pl-12 pr-12 pb-4 secondary"
     >
       <Filters />
     </v-navigation-drawer>
     <v-toolbar
-      color="elevation-0 white"
+      color="elevation-0 secondary"
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <img src="/logo.png" height="50">
@@ -27,17 +28,6 @@
     </v-toolbar>
     <v-main>
       <v-container>
-        <v-row>
-          <v-col>
-            <ProductCard />
-          </v-col>
-          <v-col>
-            <ProductCard />
-          </v-col>
-          <v-col>
-            <ProductCard />
-          </v-col>
-        </v-row>
         <Nuxt />
       </v-container>
     </v-main>
@@ -47,11 +37,10 @@
 
 <script>
 import ActionButton from '../components/ActionButton'
-import ProductCard from '../components/ProductCard'
 import Footer from '../components/Footer'
-import Filters from '../components/Filters'
+import Filters from '../components/filters/Filters'
 export default {
-  components: { Filters, Footer, ProductCard, ActionButton },
+  components: { Filters, Footer, ActionButton },
   data () {
     return {
       drawer: false,

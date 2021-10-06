@@ -27,6 +27,10 @@
   font-family: "Bogle-Regular" !important;
 }
 
+i.v-icon.notranslate.mdi.mdi-radiobox-blank.theme--light {
+  color: #F6BC37 !important;
+}
+
 .font-size-price{
   font-size: 25px;
 }
@@ -35,12 +39,40 @@
   font-size: 16px;
 }
 
+.font-size-12{
+  font-size: 12px;
+}
+
+.font-size-13{
+  font-size: 13px;
+}
+
 .font-size-14{
   font-size: 14px;
 }
 
+.font-size-16{
+  font-size: 16px;
+}
+
+.font-size-18{
+  font-size: 18px;
+}
+
 .text-primary{
   color: $primary-color !important;
+}
+
+.text-black{
+  color: black !important;
+}
+
+.text-white{
+  color: white !important;
+}
+
+.text-secondary{
+  color: $secondary-color !important;
 }
 
 .border-color-primary{
@@ -48,14 +80,30 @@
 }
 
 .border-button{
-  border: 2px solid #2699FB;
-  border-radius: 20px;
+  border: 3px solid $secondary-color;
+  border-radius: 30px;
 }
 
 .bg-white{
   background: white !important;
 }
 
+.bg-primary{
+  background: $primary-color !important;
+}
+
+.bg-secondary{
+  background: $secondary-color !important;
+}
+
 .hover-pointer:hover{
   cursor: pointer;
+}
+
+.filter-button{
+  border: 2px solid #F6BC37; border-radius: 30px;
+}
+
+.min-width-180{
+  min-width: 180px;
 }
