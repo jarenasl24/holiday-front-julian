@@ -1,20 +1,21 @@
 <template>
-  <v-btn
-    rounded
-    outlined
-    color="primary"
-    dark
-    :class="`btn p-4 ${hover ? 'hover' : '' }`"
-    @mouseenter="()=>hover=true"
-    @mouseleave="()=>hover=false"
+  <div
+    class="border-solid-2 font-weight-bold text-uppercase border-button px-4 hover-pointer text-center"
+    :class="`${hover? 'border-color-primary text-secondary bg-primary': 'bg-secondary border-color-white text-white'}`"
+    @mouseenter="() => hover = true"
+    @mouseleave="() => hover = false"
+    @click="click"
   >
-    <div class="mr-2">{{ text }}</div>
-    <v-icon
-      right
-      dark
-      large
-      :class="`icon ${hover ? 'icon-hover' : '' }`">mdi-domain</v-icon>
-  </v-btn>
+    <v-row class="py-2">
+      <v-col cols="10" class="align-self-center">
+        <div>{{ text }}</div>
+      </v-col>
+      <v-col cols="2">
+        <v-icon v-if="!hover" color="white">mdi-gift</v-icon>
+        <v-icon v-if="hover" color="secondary">mdi-gift-outline</v-icon>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
@@ -28,6 +29,11 @@ export default {
   data () {
     return {
       hover: false
+    }
+  },
+  methods: {
+    click () {
+      this.$emit('click')
     }
   }
 }
