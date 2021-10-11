@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <div>
-      <div class="hover-pointer text-right"><v-icon color="white" size="50">mdi-close-circle-outline</v-icon></div>
+      <div class="hover-pointer text-right"><v-icon color="white" size="50" @click="closeFilters">mdi-close-circle-outline</v-icon></div>
     </div>
     <div class="mx-6 my-4">
       <h1 class="text-primary font-weight-bold">Todos los filtros</h1>
@@ -45,6 +45,12 @@ export default {
       precioExpanded: true,
       categoriaExpanded: true,
       edadExpanded: true
+    }
+  },
+  methods: {
+    async closeFilters () {
+      console.log('closeFilters')
+      await this.$store.commit('hideFilters')
     }
   }
 }
