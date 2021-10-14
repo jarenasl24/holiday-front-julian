@@ -41,8 +41,8 @@
     <v-col cols="4" class="text-right align-self-center">
       <div class="text-white font-weight-bold">
         Síguenos
-        <v-icon>mdi-facebook</v-icon>
-        <v-icon>mdi-youtube</v-icon>
+        <a class="ml-2"><v-icon x-large>$vuetify.icons.value.facebook</v-icon></a>
+        <a class="ml-2"><v-icon x-large>$vuetify.icons.value.youtube</v-icon></a>
       </div>
     </v-col>
   </v-row>

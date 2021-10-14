@@ -1,5 +1,5 @@
 <template>
-  <v-card outlined max-width="300" :class="`card rouned-15 ${selectedTemp? 'card-activate' : ''}`">
+  <v-card outlined max-width="100%" :class="`card rouned-15 ${selectedTemp? 'card-activate' : ''}`">
     <v-card-title>
       <v-carousel
         v-model="model"
@@ -48,8 +48,8 @@
             <div>{{ selectedTemp? 'Agregado': 'Agregar' }}</div>
           </v-col>
           <v-col cols="4">
-            <v-icon v-if="!selectedTemp" color="secondary">mdi-plus-circle</v-icon>
-            <v-icon v-if="selectedTemp" color="secondary">mdi-check-circle</v-icon>
+            <v-icon v-if="!selectedTemp" color="secondary">fa-plus-circle</v-icon>
+            <v-icon v-if="selectedTemp" color="secondary">fa-check-circle</v-icon>
           </v-col>
         </v-row>
       </div>

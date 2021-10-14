@@ -16,14 +16,14 @@
         <v-toolbar
           color="elevation-0 secondary"
         >
-          <img src="/logo-WPR.svg" height="40">
+          <img src="/logo-WPR.svg" height="35">
           <v-spacer />
           <v-badge
             color="red"
             dot
             overlap
           >
-            <action-button text="VER LA LISTA DE DESEOS" />
+            <action-button text="VER LA LISTA DE DESEOS" icon="fa-gifts" />
           </v-badge>
           <v-toolbar-title />
         </v-toolbar>

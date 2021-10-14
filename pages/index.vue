@@ -1,28 +1,35 @@
 <template>
   <div>
-    <v-row>
-      <v-col cols="8">
-        <v-row>
-          <v-col cols="3">
-            <action-button text="filtros" @click="showFilters"></action-button>
-          </v-col>
-        </v-row>
-      </v-col>
-      <v-col cols="4">
-
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <ProductCard />
-      </v-col>
-      <v-col>
-        <ProductCard />
-      </v-col>
-      <v-col>
-        <ProductCard />
-      </v-col>
-    </v-row>
+    <img
+      src="/compact.png"
+      class="hidden-sm-and-down"
+      style="position: absolute;left: -35%;top: 10%;height: 50%;z-index: 0;">
+    <v-container class="mb-10">
+      <Header />
+    </v-container>
+    <div v-if="amountGifts">
+      <BannerFilters />
+      <v-row class="mb-10">
+        <v-col cols="6" md="4">
+          <ProductCard />
+        </v-col>
+        <v-col cols="6" md="4">
+          <ProductCard />
+        </v-col>
+        <v-col cols="6" md="4">
+          <ProductCard />
+        </v-col>
+        <v-col cols="6" md="4">
+          <ProductCard />
+        </v-col>
+        <v-col cols="6" md="4">
+          <ProductCard />
+        </v-col>
+        <v-col cols="6" md="4">
+          <ProductCard />
+        </v-col>
+      </v-row>
+    </div>
     <v-footer class="bg-secondary px-0">
       <Subcribe />
     </v-footer>
@@ -31,13 +38,13 @@
 <script>
 import ProductCard from '../components/ProductCard'
 import Subcribe from '../components/Subcribe'
-import ActionButton from '../components/ActionButton'
+import Header from '../components/home/Header'
+import BannerFilters from '../components/home/BannerFilters'
 export default {
-  components: { ActionButton, Subcribe, ProductCard },
-  methods: {
-    showFilters () {
-      console.log('aca')
-      this.$store.commit('showFilters')
+  components: { BannerFilters, Header, Subcribe, ProductCard },
+  computed: {
+    amountGifts () {
+      return this.$store.getters.amountGifts
     }
   }
 }

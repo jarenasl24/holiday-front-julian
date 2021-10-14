@@ -1,5 +1,6 @@
 export const state = () => ({
-  filters: false
+  filters: false,
+  amountGifts: null
 })
 
 export const mutations = {
@@ -8,17 +9,20 @@ export const mutations = {
   },
   hideFilters (state) {
     state.filters = false
+  },
+  setAmountGifts (state, amount) {
+    state.amountGifts = amount
   }
 }
 
 export const actions = {
-  hideFilters (state) {
-    state.filters = false
-  }
 }
 
 export const getters = {
   filters: (state) => {
     return state.filters
+  },
+  amountGifts: (state) => {
+    return state.amountGifts
   }
 }
