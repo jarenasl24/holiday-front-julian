@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="text-center" v-if="edades.length === 0">
+    <div v-if="edades.length === 0" class="text-center">
       <v-progress-circular
         class="justify-center"
         indeterminate
         color="primary"
-      ></v-progress-circular>
+      />
     </div>
-    <v-radio-group v-else v-model="radioGroup">
+    <v-radio-group v-else :value="value" @change="change">
       <v-radio
         v-for="edad in edades"
         :key="edad.id"
@@ -15,8 +15,10 @@
         class="text-primary"
         color="primary"
       >
-        <template v-slot:label>
-          <div class="text-primary font-size-14">{{ edad.name }}</div>
+        <template #label>
+          <div class="text-primary font-size-14">
+            {{ edad.name }}
+          </div>
         </template>
       </v-radio>
     </v-radio-group>
@@ -26,21 +28,26 @@
 <script>
 export default {
   name: 'EdadFilter',
-  async created () {
-    const edades = await this.$strapi.find('age-groups')
-    this.edades = edades
+  props: {
+    value: {
+      type: Object
+    }
   },
   data () {
     return {
-      edades: [],
-      radioGroup: 1
+      edades: []
+    }
+  },
+  async created () {
+    this.edades = await this.$strapi.find('age-groups')
+  },
+  methods: {
+    change (ageGroup) {
+      this.$emit('change', ageGroup)
     }
   }
 }
 </script>
 
 <style scoped>
-.i.mdi.mdi-radiobox-blank {
-  color: #F6BC37 !important;
-}
 </style>

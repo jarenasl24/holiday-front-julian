@@ -1,14 +1,11 @@
 export const state = () => ({
-  filters: false,
+  showFilters: false,
   amountGifts: null
 })
 
 export const mutations = {
-  showFilters (state) {
-    state.filters = true
-  },
-  hideFilters (state) {
-    state.filters = false
+  setShowFilters (state, show) {
+    state.showFilters = show
   },
   setAmountGifts (state, amount) {
     state.amountGifts = amount
@@ -19,8 +16,8 @@ export const actions = {
 }
 
 export const getters = {
-  filters: (state) => {
-    return state.filters
+  showFilters: (state) => {
+    return state.showFilters
   },
   amountGifts: (state) => {
     return state.amountGifts

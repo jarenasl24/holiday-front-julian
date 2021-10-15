@@ -1,12 +1,15 @@
 <template>
   <div>
-    <div class="text-center text-primary font-weight-bold">$ {{range[0]}} - $ {{range[1]}}{{range[1] === 50 ? '+' : '' }}</div>
+    <div class="text-center text-primary font-weight-bold">
+      $ {{ value[0] }} - $ {{ value[1] }}{{ value[1] === 50 ? '+' : '' }}
+    </div>
     <v-range-slider
-      v-model="range"
+      :value="value"
       :max="max"
       :min="min"
       class="align-center"
       thumb-color="primary"
+      @change="setPriceRange"
     >
       <template #thumb-label="props">
         {{ props.value }}
@@ -29,11 +32,21 @@
 <script>
 export default {
   name: 'PriceFilter',
+  props: {
+    value: {
+      type: Array,
+      required: true
+    }
+  },
   data () {
     return {
       min: 0,
-      max: 50,
-      range: [10, 30]
+      max: 50
+    }
+  },
+  methods: {
+    setPriceRange (priceRange) {
+      this.$emit('change', priceRange)
     }
   }
 }

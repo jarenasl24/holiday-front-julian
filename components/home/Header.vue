@@ -39,7 +39,7 @@
       <p class="font-size-16">*Ingresa solo números</p>
     </v-col>
     <v-col cols="12" md="8" class="pa-0 hidden-sm-and-down">
-      <img src="/Group 51@2x.png" class="full-width" />
+      <img src="/header.png" class="full-width" />
     </v-col>
   </v-row>
 </template>

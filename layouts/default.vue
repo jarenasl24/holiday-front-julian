@@ -62,13 +62,13 @@ export default {
   },
   computed: {
     showFilters () {
-      return this.$store.getters.filters
+      return this.$store.getters.showFilters
     }
   },
   methods: {
     inputNavigator (state) {
       if (!state) {
-        this.$store.commit('hideFilters')
+        this.$store.commit('setShowFilters', false)
       }
     }
   }
