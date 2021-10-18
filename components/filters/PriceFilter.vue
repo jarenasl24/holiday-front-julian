@@ -32,21 +32,20 @@
 <script>
 export default {
   name: 'PriceFilter',
-  props: {
-    value: {
-      type: Array,
-      required: true
-    }
-  },
   data () {
     return {
       min: 0,
       max: 50
     }
   },
+  computed: {
+    value () {
+      return this.$store.getters['filters/priceRange']
+    }
+  },
   methods: {
     setPriceRange (priceRange) {
-      this.$emit('change', priceRange)
+      this.$store.commit('filters/setPriceRange', priceRange)
     }
   }
 }

@@ -28,15 +28,14 @@
 <script>
 export default {
   name: 'CategoriasFilter',
-  props: {
-    value: {
-      type: Array,
-      required: true
-    }
-  },
   data () {
     return {
       categories: []
+    }
+  },
+  computed: {
+    value () {
+      return this.$store.getters['filters/categories']
     }
   },
   async created () {
@@ -48,9 +47,9 @@ export default {
     },
     change (category) {
       if (!this.isSelected(category)) {
-        this.$emit('add', category)
+        this.$store.commit('filters/addCategory', category)
       } else {
-        this.$emit('remove', category)
+        this.$store.commit('filters/removeCategory', category)
       }
     }
   }

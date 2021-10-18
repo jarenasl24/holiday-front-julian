@@ -8,11 +8,11 @@
         hide-delimiters
       >
         <v-carousel-item
-          v-for="(color, i) in colors"
-          :key="color"
+          v-for="image in product.images"
+          :key="image.id"
         >
           <v-sheet
-            :color="color"
+            color="white"
             height="100%"
             tile
           >
@@ -22,7 +22,7 @@
               justify="center"
             >
               <div class="text-h2">
-                Slide {{ i + 1 }}
+                <img :src="image.url" alt="" class="full-width">
               </div>
             </v-row>
           </v-sheet>
@@ -31,12 +31,12 @@
     </v-card-title>
     <v-card-text>
       <div class="font-size-price text-black font-weight-bold mb-2">
-        $ 9,65 <span class="text-decoration-line-through font-weight-regular sup">
-          $ 13,2
+        $ {{ product.reduced_price }} <span class="text-decoration-line-through font-weight-regular sup">
+          $ {{ product.price }}
         </span>
       </div>
-      <div class="font-weight-bold text-black font-size-description">Really RAD Robots</div>
-      <div class="text-black font-size-description">Prankob - Electronic Remote Control Pranking Robot</div>
+      <div class="font-weight-bold text-black font-size-description">{{ product.name }}</div>
+      <div class="text-black font-size-description">{{ product.description }}</div>
     </v-card-text>
     <v-card-actions class="mt-0">
       <div
@@ -64,18 +64,14 @@ export default {
     selected: {
       type: Boolean,
       default: false
+    },
+    product: {
+      type: Object
     }
   },
   data: () => ({
     model: 0,
-    selectedTemp: false,
-    colors: [
-      'primary',
-      'secondary',
-      'yellow darken-2',
-      'red',
-      'orange'
-    ]
+    selectedTemp: false
   })
 }
 </script>

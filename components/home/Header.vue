@@ -58,8 +58,10 @@ export default {
     }
   },
   methods: {
-    setAmountGifts () {
-      this.$store.commit('setAmountGifts', this.cantidad)
+    async setAmountGifts () {
+      await this.$store.commit('setAmountGifts', this.cantidad)
+      const filtros = await this.$store.getters['filters/filters']
+      await this.$store.dispatch('products/aplicarFiltros', filtros)
     }
   }
 }

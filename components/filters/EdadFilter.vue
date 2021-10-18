@@ -28,14 +28,14 @@
 <script>
 export default {
   name: 'EdadFilter',
-  props: {
-    value: {
-      type: Object
-    }
-  },
   data () {
     return {
       edades: []
+    }
+  },
+  computed: {
+    value () {
+      return this.$store.getters['filters/ageGroup']
     }
   },
   async created () {
@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     change (ageGroup) {
-      this.$emit('change', ageGroup)
+      this.$store.commit('filters/setAgeGroup', ageGroup)
     }
   }
 }

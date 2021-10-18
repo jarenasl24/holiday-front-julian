@@ -49,6 +49,7 @@ export default {
   methods: {
     showFilters () {
       this.$store.commit('setShowFilters', true)
+      this.$store.dispatch('lastFilters/setLastFilters', this.$store.getters['filters/filters'])
     }
   }
 }

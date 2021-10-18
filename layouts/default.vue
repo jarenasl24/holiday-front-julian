@@ -66,9 +66,11 @@ export default {
     }
   },
   methods: {
-    inputNavigator (state) {
-      if (!state) {
-        this.$store.commit('setShowFilters', false)
+    async inputNavigator (state) {
+      if (!state && this.$store.getters.showFilters) {
+        console.log('acaas')
+        await this.$store.commit('setShowFilters', false)
+        await this.$store.dispatch('filters/setFilters', this.$store.getters['lastFilters/lastFilters'])
       }
     }
   }

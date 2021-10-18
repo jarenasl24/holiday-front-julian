@@ -1,35 +1,38 @@
 <template>
   <div>
-    <img
+    <!--<img
       src="/compact.png"
       class="hidden-sm-and-down"
-      style="position: absolute;left: -35%;top: 10%;height: 50%;z-index: 0;">
+      style="position: absolute;left: -35%;top: 10%;height: 50%;z-index: 0;">-->
     <v-container class="mb-10">
       <Header />
     </v-container>
     <div v-if="amountGifts">
       <BannerFilters />
       <v-row class="mb-10">
-        <v-col cols="6" md="4">
-          <ProductCard />
-        </v-col>
-        <v-col cols="6" md="4">
-          <ProductCard />
-        </v-col>
-        <v-col cols="6" md="4">
-          <ProductCard />
-        </v-col>
-        <v-col cols="6" md="4">
-          <ProductCard />
-        </v-col>
-        <v-col cols="6" md="4">
-          <ProductCard />
-        </v-col>
-        <v-col cols="6" md="4">
-          <ProductCard />
+        <v-col v-for="product in products" :key="product.id" cols="12" md="4">
+          <ProductCard :product="product" />
         </v-col>
       </v-row>
     </div>
+    <infinite-loading
+      v-if="!(products.length<=0)"
+      v-model="cargandoProductos"
+      spinner="waveDots"
+      color="primary"
+      @infinite="infiniteScroll"
+    >
+      <slot slot="no-more">
+        <div class="text-primary">
+          No hay mas productos
+        </div>
+        <div slot="no-results">
+          <div class="text-primary">
+            No hay mas productos
+          </div>
+        </div>
+      </slot>
+    </infinite-loading>
     <v-footer class="bg-secondary px-0">
       <Subcribe />
     </v-footer>
@@ -40,11 +43,31 @@ import ProductCard from '../components/ProductCard'
 import Subcribe from '../components/Subcribe'
 import Header from '../components/home/Header'
 import BannerFilters from '../components/home/BannerFilters'
+import getProducts from '../api/products'
+
 export default {
   components: { BannerFilters, Header, Subcribe, ProductCard },
   computed: {
     amountGifts () {
       return this.$store.getters.amountGifts
+    },
+    products () {
+      return this.$store.getters['products/productos']
+    },
+    cargandoProductos () {
+      return this.$store.getters['products/cargando']
+    }
+  },
+  methods: {
+    infiniteScroll ($state) {
+      getProducts(this.$strapi, this.$store.getters['filters/filters'], this.$store.getters['products/limit'], this.products.length).then((response) => {
+        if (response.length === 0) {
+          $state.complete()
+        } else {
+          this.$store.commit('products/addProducts', response)
+          $state.loaded()
+        }
+      })
     }
   }
 }

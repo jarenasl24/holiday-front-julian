@@ -17,6 +17,7 @@
     "core-js": "^3.15.1",
     "createsend-node": "^0.8.2",
     "nuxt": "^2.15.7",
+    "vue-infinite-loading": "^2.4.5",
     "vuetify": "^2.5.5"
   },
   "devDependencies": {

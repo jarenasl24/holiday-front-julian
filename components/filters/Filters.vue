@@ -17,21 +17,21 @@
       <TitleFilter :expanded="precioExpanded" title="Precio" @change="()=>{ precioExpanded = !precioExpanded }" />
       <v-divider class="border-color-primary" />
       <div v-show="precioExpanded" class="my-10">
-        <PriceFilter v-model="priceRange" @change="setPriceRange" />
+        <PriceFilter />
       </div>
     </div>
     <div class="mx-6 mt-10">
       <TitleFilter :expanded="categoriaExpanded" title="Categoría del producto" @change="()=>{ categoriaExpanded = !categoriaExpanded }" />
       <v-divider class="border-color-primary" />
       <div v-show="categoriaExpanded" class="my-2">
-        <CategoriasFilter v-model="categories" @add="addCategory" @remove="removeCategory" />
+        <CategoriasFilter />
       </div>
     </div>
     <div class="mx-6 my-10">
       <TitleFilter :expanded="edadExpanded" title="Edad" @change="()=>{ edadExpanded = !edadExpanded }" />
       <v-divider class="border-color-primary" />
       <div v-show="edadExpanded" class="my-2">
-        <EdadFilter v-model="ageGroup" @change="setAgeGroup" />
+        <EdadFilter />
       </div>
     </div>
     <div
@@ -55,42 +55,18 @@ export default {
     return {
       precioExpanded: true,
       categoriaExpanded: true,
-      edadExpanded: true,
-      priceRange: [0, 50],
-      categories: [],
-      ageGroup: null
+      edadExpanded: true
     }
   },
   methods: {
-    setPriceRange (priceRange) {
-      this.priceRange = priceRange
-    },
-    setCategories (categories) {
-      this.categories = categories
-    },
-    addCategory (categorie) {
-      this.categories.push(categorie)
-    },
-    removeCategory (categorie) {
-      this.categories = this.categories.filter(c => c.id !== categorie.id)
-    },
-    setAgeGroup (ageGroup) {
-      this.ageGroup = ageGroup
-    },
     async closeFilters () {
-      this.setPriceRange([this.$store.getters['filters/minPrice'], this.$store.getters['filters/maxPrice']])
-      this.categories = []
-      this.$store.getters['filters/categories'].forEach(c => this.categories.push(c))
-      console.log(this.categories)
-      this.setAgeGroup(this.$store.getters['filters/ageGroup'])
       await this.$store.commit('setShowFilters', false)
+      await this.$store.dispatch('filters/setFilters', this.$store.getters['lastFilters/lastFilters'])
     },
-    aplicarFiltros () {
-      this.$store.commit('filters/setMinPrice', this.range[0])
-      this.$store.commit('filters/setMaxPrice', this.range[1])
-      this.$store.commit('filters/setCategories', this.categories)
-      this.$store.commit('filters/setAgeGroup', this.ageGroup)
-      this.$store.dispatch('products/getProducts')
+    async aplicarFiltros () {
+      await this.$store.dispatch('lastFilters/setLastFilters', this.$store.getters['filters/filters'])
+      await this.$store.commit('setShowFilters', false)
+      await this.$store.dispatch('products/aplicarFiltros', this.$store.getters['filters/filters'])
     }
   }
 }
