@@ -79,6 +79,10 @@ i.v-icon.notranslate.mdi.mdi-checkbox-marked.theme--light {
   font-size: 24px;
 }
 
+.font-size-40{
+  font-size: 40px;
+}
+
 .font-size-60{
   font-size: 60px;
 }
@@ -113,6 +117,10 @@ i.v-icon.notranslate.mdi.mdi-checkbox-marked.theme--light {
 
 .bg-secondary{
   background: $secondary-color !important;
+}
+
+.bg-red{
+  background: $red-color !important;
 }
 
 .hover-pointer:hover{
@@ -177,7 +185,7 @@ i.v-icon.notranslate.mdi.mdi-checkbox-marked.theme--light {
 }
 
 .border-radius-30{
-  border-radius: 30px;
+  border-radius: 30px !important;
 }
 
 .border-solid-2{
@@ -198,4 +206,8 @@ i.v-icon.notranslate.mdi.mdi-checkbox-marked.theme--light {
 
 .display-flex{
   display: flex;
+}
+
+.v-dialog{
+  border-radius: 30px !important;
 }

@@ -1,13 +1,13 @@
 <template>
   <v-footer
-    :absolute="true"
+    :absolute="absolute"
     app
-    color="secondary"
+    :class="`bg-${backgroundColor}`"
   >
     <v-container>
       <v-row>
         <v-col cols="12">
-          <v-divider class="border-color-primary" />
+          <v-divider :class="`border-color-${dividerColor}`" />
         </v-col>
         <v-col cols="12" md="4">
           <img src="/logo-WPR.svg" height="40">
@@ -19,7 +19,7 @@
                 Política de privacidad
               </a>
             </v-col>
-            <v-col cols="1" class="text-center text-primary ma-0 hidden-sm-and-down">
+            <v-col cols="1" :class="`text-center text-${dividerColor} ma-0 hidden-sm-and-down`">
               |
             </v-col>
             <v-col cols="12" md="2"  class="font-size-13 text-primary font-weight-bold text-left">
@@ -41,7 +41,21 @@
 
 <script>
 export default {
-  name: 'Footer'
+  name: 'Footer',
+  props: {
+    backgroundColor: {
+      type: String,
+      default: 'secondary'
+    },
+    dividerColor: {
+      type: String,
+      default: 'primary'
+    },
+    absolute: {
+      type: Boolean,
+      default: false
+    }
+  }
 }
 </script>
 

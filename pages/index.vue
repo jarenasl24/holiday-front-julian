@@ -11,13 +11,12 @@
       <BannerFilters />
       <v-row class="mb-10">
         <v-col v-for="product in products" :key="product.id" cols="12" md="4">
-          <ProductCard :product="product" />
+          <ProductCard :product="product" @click="() => addProduct(product)" />
         </v-col>
       </v-row>
     </div>
     <infinite-loading
-      v-if="!(products.length<=0)"
-      v-model="cargandoProductos"
+      v-if="!(products.length <= 0)"
       spinner="waveDots"
       color="primary"
       @infinite="infiniteScroll"
@@ -53,14 +52,16 @@ export default {
     },
     products () {
       return this.$store.getters['products/productos']
-    },
-    cargandoProductos () {
-      return this.$store.getters['products/cargando']
     }
   },
   methods: {
     infiniteScroll ($state) {
-      getProducts(this.$strapi, this.$store.getters['filters/filters'], this.$store.getters['products/limit'], this.products.length).then((response) => {
+      getProducts(
+        this.$strapi,
+        this.$store.getters['filters/filters'],
+        this.$store.getters['products/limit'],
+        this.products.length
+      ).then((response) => {
         if (response.length === 0) {
           $state.complete()
         } else {
@@ -68,6 +69,9 @@ export default {
           $state.loaded()
         }
       })
+    },
+    addProduct (product) {
+      this.$store.dispatch('wishList/addProduct', product)
     }
   }
 }

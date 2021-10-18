@@ -41,7 +41,7 @@
     <v-card-actions class="mt-0">
       <div
         :class="`text-secondary font-weight-bold text-uppercase border-button px-3 py-2 bg-white hover-pointer min-width-180 text-center ${selectedTemp ? 'bg-primary' : ''}`"
-        @click="() => selectedTemp = !selectedTemp"
+        @click="click"
       >
         <v-row>
           <v-col cols="8">
@@ -72,7 +72,12 @@ export default {
   data: () => ({
     model: 0,
     selectedTemp: false
-  })
+  }),
+  methods: {
+    click () {
+      this.$emit('click')
+    }
+  }
 }
 </script>
 
