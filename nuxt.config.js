@@ -55,7 +55,7 @@ export default {
   },
   strapi: {
     entities: ['products', 'product-categories', 'age-groups'],
-    url: 'http://localhost:1337'
+    url: process.env.STRAPI_URL || 'http://localhost:1337'
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
