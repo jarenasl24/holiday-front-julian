@@ -2,9 +2,9 @@
   <v-card outlined max-width="100%" :class="`card rouned-15 ${selectedTemp? 'card-activate' : ''}`">
     <v-card-title>
       <v-carousel
+        v-if="!selectedTemp"
         v-model="model"
         style="border-radius: 5px;"
-        height="300"
         hide-delimiters
       >
         <v-carousel-item
@@ -28,6 +28,9 @@
           </v-sheet>
         </v-carousel-item>
       </v-carousel>
+      <v-img
+        v-else
+        src="/Grupo 52.png" />
     </v-card-title>
     <v-card-text>
       <div class="font-size-price text-black font-weight-bold mb-2">
