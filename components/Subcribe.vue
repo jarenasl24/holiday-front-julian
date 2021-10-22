@@ -1,12 +1,12 @@
 <template>
   <v-row>
-    <v-col cols="5">
+    <v-col cols="12" md="5">
       <form class="js-cm-form" id="subForm" action="https://www.createsend.com/t/subscribeerror?description=" method="post" data-id="2BE4EF332AA2E32596E38B640E9056194739F4760152CFCA8CADDEBDA88E6B765061BB27CDCDE2C65FC4FBEE56CCB5CC3283EF340E2E1E986EBBB917BFCBB016">
         <v-row class="ma-0 border-color-primary border-radius-30 border-solid-2 bg-white">
           <v-col cols="8" class="pa-0">
             <v-text-field
               id="fieldEmail"
-              label="TU EMAIL AQUÍ"
+              label="Ingresa tu email"
               hide-details="auto"
               autocomplete="Email"
               aria-label="Email"
@@ -30,19 +30,19 @@
             >-->
           </v-col>
           <v-col cols="4" class="pa-0 border-top-right-radius-15 border-bottom-right-radius-15 bg-primary">
-            <button type="submit" class="text-secondary pr-8 pl-7 py-3 text-uppercase font-weight-bold full-width font-size-12">Subscribete</button>
+            <button type="submit" class="text-secondary pr-8 pl-7 py-3 text-uppercase font-weight-bold full-width font-size-12">Subscríbete</button>
           </v-col>
         </v-row>
       </form>
       <script type="text/javascript" src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"></script>
     </v-col>
-    <v-col cols="3" class="text-right">
+    <v-col cols="12" md="3" class="text-right hidden-sm-and-down">
     </v-col>
-    <v-col cols="4" class="text-right align-self-center">
+    <v-col cols="12" md="4" class="siguenos align-self-center">
       <div class="text-white font-weight-bold">
         Síguenos
-        <a class="ml-2"><v-icon x-large>$vuetify.icons.value.facebook</v-icon></a>
-        <a class="ml-2"><v-icon x-large>$vuetify.icons.value.youtube</v-icon></a>
+        <a href="https://www.facebook.com/Walmartpr/" target="_blank" class="ml-2"><v-icon x-large>$vuetify.icons.value.facebook</v-icon></a>
+        <a href="https://www.youtube.com/user/WalmartPuertoRico" target="_blank" class="ml-2"><v-icon x-large>$vuetify.icons.value.youtube</v-icon></a>
       </div>
     </v-col>
   </v-row>
@@ -55,5 +55,13 @@ export default {
 </script>
 
 <style scoped>
+.siguenos{
+  text-align: right;
+}
 
+@media (max-width: 960px) {
+  .siguenos{
+    text-align: left;
+  }
+}
 </style>

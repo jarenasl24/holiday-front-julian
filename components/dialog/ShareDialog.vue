@@ -27,6 +27,8 @@
               text-color-hover="secondary"
               background-color="secondary"
               background-color-hover="primary"
+              width="w-80p"
+              show-text-on-mobile
               @click="sendWhatsapp"
             />
           </div>
@@ -40,6 +42,8 @@
               text-color-hover="secondary"
               background-color="secondary"
               background-color-hover="primary"
+              width="w-80p"
+              show-text-on-mobile
               @click="sendMessenger"
             />
           </div>
@@ -53,6 +57,8 @@
               text-color-hover="secondary"
               background-color="secondary"
               background-color-hover="primary"
+              width="w-80p"
+              show-text-on-mobile
               @click="openEmail"
             />
           </div>
@@ -66,6 +72,8 @@
               text-color-hover="secondary"
               background-color="secondary"
               background-color-hover="primary"
+              width="w-80p"
+              show-text-on-mobile
               @click="openSms"
             />
           </div>
@@ -76,8 +84,10 @@
 </template>
 
 <script>
+import ActionButton from '../ActionButton'
 export default {
   name: 'ShareDialog',
+  components: { ActionButton },
   props: {
     value: {
       type: Boolean,

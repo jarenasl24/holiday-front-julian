@@ -1,43 +1,50 @@
 <template>
   <div>
-    <v-toolbar
+    <v-row
       color="elevation-0"
       class="bg-red mb-8"
     >
-      <h1 class="font-weight-bold text-white font-size-40">
-        Tu lista de deseos
-      </h1>
-      <v-spacer />
-      <div>
-        <action-button
-          text="Compartir"
-          icon="fa-share-alt"
-          border-color="primary"
-          border-color-hover="primary"
-          text-color="primary"
-          text-color-hover="secondary"
-          background-color="red"
-          background-color-hover="primary"
-          @click="showShare = true"
-        />
-      </div>
-      <div class="ml-4">
-        <action-button
-          text="Guardar"
-          icon="fa-bookmark"
-          border-color="primary"
-          border-color-hover="primary"
-          text-color="primary"
-          text-color-hover="secondary"
-          background-color="red"
-          background-color-hover="primary"
-          @click="showSave = true"
-        />
-      </div>
-    </v-toolbar>
+      <v-col cols="12" md="6">
+        <h1 class="font-weight-bold text-white font-size-40">
+          Tu lista de deseos
+        </h1>
+      </v-col>
+      <v-col cols="6" md="3">
+        <div>
+          <action-button
+            text="Compartir"
+            icon="fa-share-alt"
+            border-color="primary"
+            border-color-hover="primary"
+            text-color="primary"
+            text-color-hover="secondary"
+            background-color="red"
+            background-color-hover="primary"
+            show-text-on-mobile
+            @click="showShare = true"
+          />
+        </div>
+      </v-col>
+      <v-col cols="6" md="3">
+        <div class="ml-4">
+          <action-button
+            text="Guardar"
+            icon="fa-bookmark"
+            border-color="primary"
+            border-color-hover="primary"
+            text-color="primary"
+            text-color-hover="secondary"
+            background-color="red"
+            background-color-hover="primary"
+            show-text-on-mobile
+            @click="showSave = true"
+          />
+        </div>
+      </v-col>
+    </v-row>
     <v-row v-if="list" class="mb-10">
       <v-col v-for="product in list.products" :key="product.id" cols="12" md="4">
-        <ProductCard :product="product" @click="() => {} " />
+        <ProductCard :product="product" :selected="isSelectedProduct(product)" @click="() => {} " />
       </v-col>
     </v-row>
     <ShareDialog
@@ -56,8 +63,9 @@
 import ShareDialog from '../../components/dialog/ShareDialog'
 import EmailDialog from '../../components/dialog/EmailDialog'
 import SmsDialog from '../../components/dialog/SmsDialog'
+import ActionButton from '../../components/ActionButton'
 export default {
-  components: { SmsDialog, EmailDialog, ShareDialog },
+  components: { ActionButton, SmsDialog, EmailDialog, ShareDialog },
   layout: 'redLayout',
   data () {
     return {
@@ -81,6 +89,12 @@ export default {
       this.error = error
     } finally {
       this.$nuxt.$loading.finish()
+    }
+  },
+  methods: {
+    isSelectedProduct (product) {
+      return this.$store.getters['wishList/productos']
+        .filter(p => p.id === product.id).length >= 1
     }
   }
 }

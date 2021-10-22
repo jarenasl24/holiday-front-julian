@@ -1,15 +1,25 @@
 <template>
-  <v-row class="hero-header" style="max-width: 1200px">
+  <v-row style="max-width: 1200px">
     <v-col cols="12" md="8" class="pa-0 hidden-md-and-up">
-      <img src="/Group 51@2x.png" class="full-width" />
+      <img src="/img-holliday-rev.png" class="full-width" />
     </v-col>
     <v-col cols="12" md="4" class="pa-0 text-white align-self-center">
-      <p class="font-size-20 mb-4">Navidad en Wallmart</p>
-      <h1 class="font-size-60 line-height-normal mb-0">¡Arma tu lista de deseos!</h1>
-      <h3 class="font-size-24 mb-6">¿Cuantos regalos quieres en tu lista?</h3>
-      <v-row class="ma-0 border-color-primary border-radius-30 border-solid-2 bg-white">
-        <v-col cols="8" class="pa-0">
-          <v-text-field
+      <p class="font-size-20 mb-4">Navidades en Wallmart</p>
+      <h1 class="font-size-60 line-height-normal mb-0">¡Crea tu lista de regalos!</h1>
+      <h3 class="font-size-24 mb-6">¿Cuántos regalos quieres en tu lista?</h3>
+      <div class="ma-0 d-flex border-color-primary border-radius-30 border-solid-2 bg-white">
+        <div class="w-60p">
+          <v-select
+            id="fieldCantidad"
+            v-model="cantidad"
+            :items="cantidades"
+            :label="labelCantidad"
+            color="black"
+            class="cantidad-select full-width fill-height px-4 mb-0 pb-0 pt-1 font-size-12"
+            required="true"
+            dense
+          ></v-select>
+          <!--<v-select
             id="fieldEmail"
             v-model="cantidad"
             label="CANTIDAD DE REGALOS"
@@ -19,14 +29,14 @@
             required="true"
             type="number"
             dense
-          ></v-text-field>
-        </v-col>
-        <v-col cols="4" class="pa-0 border-top-right-radius-15 border-bottom-right-radius-15 bg-primary">
+          ></v-select>-->
+        </div>
+        <div class="pa-0 border-top-right-radius-30 border-bottom-right-radius-30 bg-primary w-40p">
           <button
             @click="setAmountGifts"
             class="text-secondary py-3 text-uppercase font-weight-bold full-width font-size-12 bg-primary border-radius-30">
             <div class="display-flex place-content-center">
-              <div class="pr-2 align-self-center">
+              <div class="pr-2 align-self-center ">
                 Comenzar
               </div>
               <v-icon color="secondary">
@@ -34,12 +44,12 @@
               </v-icon>
             </div>
           </button>
-        </v-col>
-      </v-row>
-      <p class="font-size-16">*Ingresa solo números</p>
+        </div>
+      </div>
+      <p class="font-size-16 mt-2">*Ingresa solo números</p>
     </v-col>
     <v-col cols="12" md="8" class="pa-0 hidden-sm-and-down">
-      <img src="/header.png" class="full-width" />
+      <img src="/img-holliday-rev.png" class="full-width" />
     </v-col>
   </v-row>
 </template>
@@ -49,12 +59,16 @@ export default {
   name: 'Header',
   data () {
     return {
-      cantidad: null
+      cantidad: null,
+      cantidades: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
     }
   },
   computed: {
     amountGifts () {
       return this.$store.getters.amountGifts
+    },
+    labelCantidad () {
+      return this.cantidad !== null ? '' : 'CANTIDAD DE REGALOS'
     }
   },
   methods: {
@@ -68,5 +82,34 @@ export default {
 </script>
 
 <style scoped>
+@media (max-width: 720px) {
+  .hero-header{
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+  }
 
+  .font-size-20{
+    font-size: 15px;
+  }
+
+  .font-size-60{
+    font-size: 40px;
+  }
+
+  .font-size-24{
+    font-size: 18px;
+  }
+
+  .theme--light.v-text-field:not(.v-input--has-state):hover > .v-input__control > .v-input__slot:before {
+    border-color: white !important;
+    border-style: none !important;
+  }
+  .v-text-field > .v-input__control > .v-input__slot:before, .v-text-field > .v-input__control > .v-input__slot:after{
+    border-color: white !important;
+  }
+  .v-text-field__details{
+    display: none !important;
+  }
+}
 </style>

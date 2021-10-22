@@ -20,7 +20,6 @@ export const actions = {
     context.dispatch('getProducts', filters)
   },
   getProducts (context, filters) {
-    context.commit('setCargando', true)
     getProducts(this.$strapi, filters, context.getters.limit, context.getters.productos.length).then((response) => {
       context.commit('addProducts', response)
     })

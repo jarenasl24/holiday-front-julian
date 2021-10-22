@@ -47,6 +47,10 @@ i.v-icon.notranslate.mdi.mdi-checkbox-marked.theme--light {
   font-size: 16px;
 }
 
+.font-size-11{
+  font-size: 11px;
+}
+
 .font-size-12{
   font-size: 12px;
 }
@@ -111,6 +115,14 @@ i.v-icon.notranslate.mdi.mdi-checkbox-marked.theme--light {
   color: $secondary-color !important;
 }
 
+.text-red{
+  color: $red-color !important;
+}
+
+.text-chip{
+  color: $chip-color !important;
+}
+
 .bg-white{
   background: white !important;
 }
@@ -129,6 +141,10 @@ i.v-icon.notranslate.mdi.mdi-checkbox-marked.theme--light {
 
 .bg-red{
   background: $red-color !important;
+}
+
+.bg-green{
+  background: $green-color !important;
 }
 
 .hover-pointer:hover{
@@ -155,6 +171,13 @@ i.v-icon.notranslate.mdi.mdi-checkbox-marked.theme--light {
   border-color: white !important;
 }
 
+.border-color-red{
+  border-color: $red-color !important;
+}
+
+.border-color-chip{
+  border-color: $chip-color !important;
+}
 
 .border-color-black{
   border-color: black !important;
@@ -197,6 +220,22 @@ i.v-icon.notranslate.mdi.mdi-checkbox-marked.theme--light {
   border-bottom-left-radius: 10px;
 }
 
+.border-top-right-radius-30{
+  border-top-right-radius: 30px;
+}
+
+.border-bottom-right-radius-30{
+  border-bottom-right-radius: 30px;
+}
+
+.border-top-left-radius-30{
+  border-top-left-radius: 30px;
+}
+
+.border-bottom-left-radius-30{
+  border-bottom-left-radius: 30px;
+}
+
 .border-radius-10{
   border-radius: 10px;
 }
@@ -233,6 +272,10 @@ i.v-icon.notranslate.mdi.mdi-checkbox-marked.theme--light {
   place-content: center;
 }
 
+.place-content-end{
+  place-content: end;
+}
+
 .display-flex{
   display: flex;
 }
@@ -243,5 +286,45 @@ i.v-icon.notranslate.mdi.mdi-checkbox-marked.theme--light {
 
 .text-decoration-none{
   text-decoration: none !important;
+}
+
+.w-80p{
+  width: 80%;
+}
+
+.w-65p{
+  width: 65%;
+}
+
+.w-60p{
+  width: 60%;
+}
+
+.w-40p{
+  width: 40%;
+}
+
+.w-35p{
+  width: 35%;
+}
+
+.min-height50{
+  /** min-height: 50px;**/
+}
+
+.place-items-center{
+  place-items: center;
+}
+
+/* CUIDADO CON ESTO */
+.theme--light.v-text-field:not(.v-input--has-state):hover > .v-input__control > .v-input__slot:before {
+  border-color: white !important;
+  border-style: none !important;
+}
+.v-text-field > .v-input__control > .v-input__slot:before, .v-text-field > .v-input__control > .v-input__slot:after{
+  border-color: white !important;
+}
+.v-text-field__details{
+  display: none !important;
 }
 

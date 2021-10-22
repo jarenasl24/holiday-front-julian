@@ -9,6 +9,9 @@ export const mutations = {
   },
   addProduct (state, product) {
     state.productos.push(product)
+  },
+  removeProduct (state, product) {
+    state.productos = state.productos.filter(p => p.id !== product.id)
   }
 }
 
@@ -34,6 +37,17 @@ export const actions = {
           context.commit('addProduct', product)
         })
     }
+  },
+  removeProduct (context, product) {
+    console.log('removeProduct')
+    console.log(product)
+    const id = context.getters.id
+    const products = context.getters.productos.filter(p => p.id !== product.id)
+    this.$strapi.update('wish-lists', id, { products })
+      .then((result) => {
+        console.log(result)
+        context.commit('removeProduct', product)
+      })
   }
 }
 

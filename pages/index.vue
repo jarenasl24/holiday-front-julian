@@ -1,17 +1,17 @@
 <template>
-  <div>
+  <div class="margin-mobile">
     <!--<img
       src="/compact.png"
       class="hidden-sm-and-down"
       style="position: absolute;left: -35%;top: 10%;height: 50%;z-index: 0;">-->
-    <v-container class="mb-10">
+    <v-container class="mb-10 d-flex justify-center">
       <Header />
     </v-container>
     <div v-if="amountGifts">
       <BannerFilters />
       <v-row class="mb-10">
         <v-col v-for="product in products" :key="product.id" cols="12" md="4">
-          <ProductCard :product="product" @click="() => addProduct(product)" />
+          <ProductCard :product="product" :selected="isSelectedProduct(product)" @click="() => setProduct(product)" />
         </v-col>
       </v-row>
     </div>
@@ -23,15 +23,14 @@
     >
       <slot slot="no-more">
         <div class="text-primary">
-          No hay mas productos
         </div>
-        <div slot="no-results">
-          <div class="text-primary">
-            No hay mas productos
-          </div>
+      </slot>
+      <slot slot="no-results">
+        <div class="text-primary">
         </div>
       </slot>
     </infinite-loading>
+    <ListCompleteDialog v-model="showListCompleted" @close="alertCompletedShowed = true" />
     <v-footer class="bg-secondary px-0">
       <Subcribe />
     </v-footer>
@@ -43,15 +42,24 @@ import Subcribe from '../components/Subcribe'
 import Header from '../components/home/Header'
 import BannerFilters from '../components/home/BannerFilters'
 import getProducts from '../api/products'
+import ListCompleteDialog from '../components/dialog/ListCompleteDialog'
 
 export default {
-  components: { BannerFilters, Header, Subcribe, ProductCard },
+  components: { ListCompleteDialog, BannerFilters, Header, Subcribe, ProductCard },
+  data () {
+    return {
+      alertCompletedShowed: false
+    }
+  },
   computed: {
     amountGifts () {
       return this.$store.getters.amountGifts
     },
     products () {
       return this.$store.getters['products/productos']
+    },
+    showListCompleted () {
+      return this.$store.getters['wishList/productos'].length === this.$store.getters.amountGifts && !this.alertCompletedShowed
     }
   },
   methods: {
@@ -70,8 +78,22 @@ export default {
         }
       })
     },
+    isSelectedProduct (product) {
+      return this.$store.getters['wishList/productos']
+        .filter(p => p.id === product.id).length >= 1
+    },
+    setProduct (product) {
+      if (this.isSelectedProduct(product)) {
+        this.removeProduct(product)
+      } else {
+        this.addProduct(product)
+      }
+    },
     addProduct (product) {
       this.$store.dispatch('wishList/addProduct', product)
+    },
+    removeProduct (product) {
+      this.$store.dispatch('wishList/removeProduct', product)
     }
   }
 }
@@ -94,5 +116,11 @@ export default {
 
 .qa-input-email.v-text-field>.v-input__control>.v-input__slot:before {
   border-style: none;
+}
+
+@media (max-width: 960px) {
+  .margin-mobile{
+    margin: 20px !important;
+  }
 }
 </style>
