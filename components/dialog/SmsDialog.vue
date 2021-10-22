@@ -23,7 +23,7 @@
       </div>
       <div class="py-8 px-8">
         <div class="text-black pb-4">
-          Querido Santa, esta es mi lista de regalos:
+          ¡Querido Santa, esta es mi lista de regalos!
           <a :href="'https://buzondenavidad.com/list/' + this.list.id" target="_blank">{{'https://buzondenavidad.com/list/' + this.list.id}}</a>
         </div>
         <v-divider />

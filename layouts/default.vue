@@ -29,7 +29,7 @@
             dot
             overlap
           >
-            <action-button text="VER LA LISTA DE DESEOS" icon="fa-gifts" @click="showList" />
+            <action-button text="Ver lista de regalos" icon="fa-gifts" @click="showList" />
           </v-badge>
           <v-toolbar-title />
         </v-toolbar>

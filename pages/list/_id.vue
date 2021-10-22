@@ -56,6 +56,11 @@
       @close="showShare = false" />
     <EmailDialog v-if="list" v-model="showEmail" :list="list" @close="showEmail = false" />
     <SmsDialog v-if="list" v-model="showSms" :list="list" @close="showSms = false" />
+    <SaveDialog
+      v-if="list"
+      v-model="showSave"
+      :list="list"
+      @close="showSave = false" />
   </div>
 </template>
 
@@ -64,8 +69,9 @@ import ShareDialog from '../../components/dialog/ShareDialog'
 import EmailDialog from '../../components/dialog/EmailDialog'
 import SmsDialog from '../../components/dialog/SmsDialog'
 import ActionButton from '../../components/ActionButton'
+import SaveDialog from '../../components/dialog/SaveDialog'
 export default {
-  components: { ActionButton, SmsDialog, EmailDialog, ShareDialog },
+  components: { SaveDialog, ActionButton, SmsDialog, EmailDialog, ShareDialog },
   layout: 'redLayout',
   data () {
     return {

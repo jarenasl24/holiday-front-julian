@@ -1,7 +1,10 @@
+import { NOMBRE_A_Z } from '../../static/const'
+
 export const state = () => ({
   priceRange: [0, 50],
   categories: [],
-  ageGroup: null
+  ageGroup: null,
+  sort: NOMBRE_A_Z
 })
 
 export const mutations = {
@@ -20,6 +23,9 @@ export const mutations = {
   },
   setAgeGroup (state, ageGroup) {
     state.ageGroup = ageGroup
+  },
+  setSort (state, sort) {
+    state.sort = sort
   }
 }
 
@@ -43,5 +49,8 @@ export const getters = {
   },
   ageGroup: (state) => {
     return state.ageGroup
+  },
+  sort: (state) => {
+    return state.sort
   }
 }

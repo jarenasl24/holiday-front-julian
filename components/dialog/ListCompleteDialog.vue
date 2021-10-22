@@ -13,7 +13,7 @@
       </div>
       <div class="py-16 px-8">
         <h1 class="text-h5 font-weight-bold text-center">
-          ¡Tu Lista de Deseos está completa!
+          ¡Tu lista de regalos está completa!
         </h1>
         <v-img src="/mail.png" />
         <div class="mt-4">

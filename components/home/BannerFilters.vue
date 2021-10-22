@@ -34,8 +34,18 @@
         <span class="font-weight-bold">
           Ordenar por <span class="hidden-sm-and-down">|</span>
         </span>
-        <span class="hidden-sm-and-down">{{ order }}</span>
+        <span class="hidden-sm-and-down">{{ sortSelected }}</span>
         <v-icon color="primary">fa-chevron-down</v-icon>
+        <v-select :value="sortSelected" :items="sortOptions" @change="setSortSelected">
+          <slot slot="label">
+            <!--<span class="hidden-sm-and-down text-primary">{{ sortSelected }}</span>
+            <v-icon color="primary">fa-chevron-down</v-icon>-->
+          </slot>
+          <slot slot="selection">
+            <span class="hidden-sm-and-down text-primary mr-1">{{ sortSelected }}</span>
+            <v-icon color="primary">fa-chevron-down</v-icon>
+          </slot>
+        </v-select>
       </div>
     </v-col>
     <v-col cols="12">
@@ -47,12 +57,18 @@
 <script>
 import ActionButton from '../ActionButton'
 import FilterButton from '../FilterButton'
+import { NOMBRE_A_Z, NOMBRE_Z_A, PRECIO_MAYOR_MENOR, PRECIO_MENOR_MAYOR } from '../../static/const'
 export default {
   name: 'BannerFilters',
   components: { FilterButton, ActionButton },
+  data () {
+    return {
+      sortOptions: [NOMBRE_A_Z, NOMBRE_Z_A, PRECIO_MENOR_MAYOR, PRECIO_MAYOR_MENOR]
+    }
+  },
   computed: {
-    order () {
-      return 'Precio: bajo a alto'
+    sortSelected () {
+      return this.$store.getters['filters/sort']
     },
     filters () {
       return this.$store.getters['filters/filters']
@@ -69,6 +85,11 @@ export default {
     },
     removeCategoryFilter (category) {
       this.$store.commit('filters/removeCategory', category)
+      this.$store.dispatch('products/aplicarFiltros', this.$store.getters['filters/filters'])
+    },
+    setSortSelected (value) {
+      console.log(value)
+      this.$store.commit('filters/setSort', value)
       this.$store.dispatch('products/aplicarFiltros', this.$store.getters['filters/filters'])
     }
   }

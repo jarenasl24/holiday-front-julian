@@ -13,14 +13,14 @@
       </div>
       <div class="py-16 px-8">
         <h1 class="text-h5 font-weight-bold text-center">
-          ¡Comparte tu lista de regalos!
+          ¡Guarda tu lista de regalos!
         </h1>
         <div class="mt-4">
           <v-divider class="border-color-primary mb-10" />
           <div class="ma-4 text-center">
             <action-button
-              text="Whatsapp"
-              icon="fab fa-whatsapp"
+              text="GOOGLE"
+              icon="fab fa-google"
               border-color="primary"
               border-color-hover="primary"
               text-color="primary"
@@ -34,8 +34,8 @@
           </div>
           <div class="ma-4 text-center">
             <action-button
-              text="Messenger"
-              icon="fab fa-facebook-messenger"
+              text="FACEBOOK"
+              icon="fab fa-facebook-f"
               border-color="primary"
               border-color-hover="primary"
               text-color="primary"
@@ -47,35 +47,12 @@
               @click="sendMessenger"
             />
           </div>
-          <div class="ma-4 text-center">
-            <action-button
-              text="Email"
-              icon="fa-envelope"
-              border-color="primary"
-              border-color-hover="primary"
-              text-color="primary"
-              text-color-hover="secondary"
-              background-color="secondary"
-              background-color-hover="primary"
-              width="w-80p"
-              show-text-on-mobile
-              @click="openEmail"
-            />
-          </div>
-          <div class="ma-4 text-center">
-            <action-button
-              text="SMS"
-              icon="fa-comments"
-              border-color="primary"
-              border-color-hover="primary"
-              text-color="primary"
-              text-color-hover="secondary"
-              background-color="secondary"
-              background-color-hover="primary"
-              width="w-80p"
-              show-text-on-mobile
-              @click="openSms"
-            />
+          <div class="mt-10 text-center">
+            <v-radio v-model="terminos" color="primary" class="place-content-center">
+              <slot slot="label">
+                <div class="text-primary">Acepta <a href="https://walmartpr.com/terminos-de-uso/" target="_blank" class="text-decoration-underline">términos y condiciones</a></div>
+              </slot>
+            </v-radio>
           </div>
         </div>
       </div>
@@ -86,7 +63,7 @@
 <script>
 import ActionButton from '../ActionButton'
 export default {
-  name: 'ShareDialog',
+  name: 'SaveDialog',
   components: { ActionButton },
   props: {
     value: {
@@ -100,24 +77,10 @@ export default {
   },
   data () {
     return {
-      showEmail: false
+      terminos: false
     }
   },
   methods: {
-    sendWhatsapp () {
-      window.open('https://api.whatsapp.com/send?text=' + 'Querido Santa, esta es mi lista de regalos: https://buzondenavidad.com/list/' + this.list.id, '_blank')
-    },
-    sendMessenger () {
-      window.open(`https://www.facebook.com/dialog/send?app_id=136647370349323&link=${'https://buzondenavidad.com/list/' + this.list.id}&redirect_uri=${'https://buzondenavidad.com/list/' + this.list.id}`, '_blank')
-    },
-    openEmail () {
-      this.$emit('showEmail')
-      this.$emit('close')
-    },
-    openSms () {
-      this.$emit('showSms')
-      this.$emit('close')
-    },
     close () {
       this.$emit('close')
     }

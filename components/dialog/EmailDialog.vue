@@ -25,11 +25,11 @@
         <div class="px-8 py-10">
           <v-img src="/mail.png" />
           <h1 class="text-secondary font-size-24 font-weight-bold text-center">
-            ¡Mira la lista de Deseos que árme para las fiestas!
+            ¡Querido Santa, esta es mi lista de regalos!
           </h1>
           <div class="display-flex justify-center pt-4">
             <a
-              :href="`https://buzondenavidad.com/${list.id}`"
+              :href="`https://buzondenavidad.com/list/${list.id}`"
               target="_blank"
               class="px-6 py-3 text-decoration-none text-secondary font-weight-bold text-center bg-primary border-radius-30 width-fit-content display-flex font-size-14">
               <div class="pr-2 pt-1">
