@@ -4,7 +4,7 @@
       <img src="/img-holliday-rev.png" class="full-width" />
     </v-col>
     <v-col cols="12" md="4" class="pa-0 text-white align-self-center">
-      <p class="font-size-20 mb-4">Navidades en Wallmart</p>
+      <p class="font-size-20 mb-4">Navidades en Walmart</p>
       <h1 class="font-size-60 line-height-normal mb-0">¡Crea tu lista de regalos!</h1>
       <h3 class="font-size-24 mb-6">¿Cuántos regalos quieres en tu lista?</h3>
       <div class="ma-0 d-flex border-color-primary border-radius-30 border-solid-2 bg-white">
@@ -19,17 +19,6 @@
             required="true"
             dense
           ></v-select>
-          <!--<v-select
-            id="fieldEmail"
-            v-model="cantidad"
-            label="CANTIDAD DE REGALOS"
-            color="black"
-            class="js-cm-email-input qa-input-email full-width fill-height px-4 mb-0 pb-0 pt-1 font-size-12"
-            maxlength="200"
-            required="true"
-            type="number"
-            dense
-          ></v-select>-->
         </div>
         <div class="pa-0 border-top-right-radius-30 border-bottom-right-radius-30 bg-primary w-40p">
           <button
@@ -46,7 +35,6 @@
           </button>
         </div>
       </div>
-      <p class="font-size-16 mt-2">*Ingresa solo números</p>
     </v-col>
     <v-col cols="12" md="8" class="pa-0 hidden-sm-and-down">
       <img src="/img-holliday-rev.png" class="full-width" />

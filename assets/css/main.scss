@@ -308,6 +308,10 @@ i.v-icon.notranslate.mdi.mdi-checkbox-marked.theme--light {
   width: 35%;
 }
 
+.w-150px{
+  width: 150px !important;
+}
+
 .min-height50{
   /** min-height: 50px;**/
 }
@@ -323,8 +327,10 @@ i.v-icon.notranslate.mdi.mdi-checkbox-marked.theme--light {
 }
 .v-text-field > .v-input__control > .v-input__slot:before, .v-text-field > .v-input__control > .v-input__slot:after{
   border-color: white !important;
+  border-style: none !important;
 }
 .v-text-field__details{
   display: none !important;
+  border-style: none !important;
 }
 

@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col cols="6" md="9">
+    <v-col cols="6" md="8">
       <v-row>
         <v-col cols="12" md="2">
           <action-button
@@ -12,6 +12,7 @@
             text-color-hover="secondary"
             background-color="secondary"
             background-color-hover="primary"
+            width="w-150px"
             show-text-on-mobile
             @click="showFilters"
           />
@@ -29,22 +30,22 @@
         </v-col>
       </v-row>
     </v-col>
-    <v-col cols="6" md="3" class="align-self-center">
+    <v-col cols="6" md="4" class="align-self-center">
       <div class="text-primary text-right">
-        <span class="font-weight-bold">
-          Ordenar por <span class="hidden-sm-and-down">|</span>
-        </span>
-        <span class="hidden-sm-and-down">{{ sortSelected }}</span>
-        <v-icon color="primary">fa-chevron-down</v-icon>
         <v-select :value="sortSelected" :items="sortOptions" @change="setSortSelected">
           <slot slot="label">
             <!--<span class="hidden-sm-and-down text-primary">{{ sortSelected }}</span>
             <v-icon color="primary">fa-chevron-down</v-icon>-->
           </slot>
           <slot slot="selection">
-            <span class="hidden-sm-and-down text-primary mr-1">{{ sortSelected }}</span>
-            <v-icon color="primary">fa-chevron-down</v-icon>
+            <div class="font-weight-bold text-primary full-width text-right text-no-wrap">
+              Ordenar por <span class="hidden-sm-and-down">|</span>
+              <span class="font-weight-regular hidden-sm-and-down text-primary mr-1">{{ sortSelected }}</span>
+            </div>
           </slot>
+          <template v-slot:append>
+            <v-icon color="primary">fa-chevron-down</v-icon>
+          </template>
         </v-select>
       </div>
     </v-col>

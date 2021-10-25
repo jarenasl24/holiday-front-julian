@@ -6,11 +6,11 @@
     @input="close"
   >
     <div class="text-white bg-secondary border-radius-30 py-8 px-8">
-      <div class="hover-pointer text-right">
+      <!--<div class="hover-pointer text-right">
         <v-icon color="white" size="50" @click="close">
           far fa-times-circle
         </v-icon>
-      </div>
+      </div>-->
       <div class="py-16 px-8">
         <h1 class="text-h5 font-weight-bold text-center">
           ¡Tu lista de regalos está completa!
