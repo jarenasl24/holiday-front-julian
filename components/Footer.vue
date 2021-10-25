@@ -10,7 +10,7 @@
           <v-divider :class="`border-color-${dividerColor}`" />
         </v-col>
         <v-col cols="12" md="4">
-          <img src="/logo-footer.png" height="40">
+          <img src="/logo-WPR.svg" height="40">
         </v-col>
         <v-col cols="12" md="8" class="align-self-center">
           <v-row>

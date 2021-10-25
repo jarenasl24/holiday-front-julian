@@ -85,9 +85,9 @@ export default {
       }
     },
     showList () {
-      const id = this.$store.getters['wishList/id']
-      if (id) {
-        this.$router.push('list/' + id)
+      const uid = this.$store.getters['wishList/uid']
+      if (uid) {
+        this.$router.push('list/' + uid)
       }
     }
   }

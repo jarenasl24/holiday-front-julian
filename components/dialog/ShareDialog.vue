@@ -105,10 +105,10 @@ export default {
   },
   methods: {
     sendWhatsapp () {
-      window.open('https://api.whatsapp.com/send?text=' + 'Querido Santa, esta es mi lista de regalos: https://buzondenavidad.com/list/' + this.list.id, '_blank')
+      window.open('https://api.whatsapp.com/send?text=' + 'Querido Santa, esta es mi lista de regalos: https://buzondenavidad.com/list/' + this.list.uid, '_blank')
     },
     sendMessenger () {
-      window.open(`https://www.facebook.com/dialog/send?app_id=136647370349323&link=${'https://buzondenavidad.com/list/' + this.list.id}&redirect_uri=${'https://buzondenavidad.com/list/' + this.list.id}`, '_blank')
+      window.open(`https://www.facebook.com/dialog/send?app_id=136647370349323&link=${'https://buzondenavidad.com/list/' + this.list.uid}&redirect_uri=${'https://buzondenavidad.com/list/' + this.list.uid}`, '_blank')
     },
     openEmail () {
       this.$emit('showEmail')

@@ -1,13 +1,15 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - Buzon de navidad',
-    title: 'Buzon de navidad',
+    titleTemplate: '%s - Buzón de Navidad',
+    title: 'Buzón de Navidad',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: 'format-detection', content: 'telephone=no' },
+      { hid: 'og:image', property: 'og:image', content: '/ogImage.png' },
+      { name: 'facebook-domain-verification', content: 'shx1pw5qxn39ywicy5araksdmadlli' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }
@@ -21,7 +23,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~/plugins/infiniteloading', ssr: false }
+    { src: '~/plugins/infiniteloading', ssr: false },
+    '~/plugins/gtm'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -41,11 +44,36 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    '@nuxtjs/strapi'
+    '@nuxtjs/strapi',
+    '@nuxtjs/google-analytics',
+    '@nuxtjs/gtm',
+    'nuxt-facebook-pixel-module'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
+
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS_ID, // Use as fallback if no runtime config is provided
+    debug: {
+      enabled: true,
+      sendHitTask: true
+    }
+  },
+
+  gtm: {
+    id: process.env.GOOGLE_TAG_MANAGER_ID,
+    debug: true,
+    sendHitTask: true
+  },
+
+  facebook: {
+    /* module options */
+    track: 'PageView',
+    pixelId: process.env.FACEBOOK_PIXEL_ID,
+    autoPageView: true,
+    disabled: false
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

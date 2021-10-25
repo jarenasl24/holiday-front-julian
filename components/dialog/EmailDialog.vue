@@ -29,7 +29,7 @@
           </h1>
           <div class="display-flex justify-center pt-4">
             <a
-              :href="`https://buzondenavidad.com/list/${list.id}`"
+              :href="`https://buzondenavidad.com/list/${list.uid}`"
               target="_blank"
               class="px-6 py-3 text-decoration-none text-secondary font-weight-bold text-center bg-primary border-radius-30 width-fit-content display-flex font-size-14">
               <div class="pr-2 pt-1">
@@ -79,7 +79,7 @@ export default {
     sendEmail () {
       this.$refs['email-form'].validate()
       if (this.valid) {
-        this.$strapi.create('mails', { email: this.to, link: 'https://buzondenavidad.com/list/' + this.list.id })
+        this.$strapi.create('mails', { email: this.to, link: 'https://buzondenavidad.com/list/' + this.list.uid })
           .then((response) => {
             this.close()
             console.log(response)

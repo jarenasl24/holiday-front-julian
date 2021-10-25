@@ -24,7 +24,7 @@
       <div class="py-8 px-8">
         <div class="text-black pb-4">
           ¡Querido Santa, esta es mi lista de regalos!
-          <a :href="'https://buzondenavidad.com/list/' + this.list.id" target="_blank">{{'https://buzondenavidad.com/list/' + this.list.id}}</a>
+          <a :href="'https://buzondenavidad.com/list/' + this.list.uid" target="_blank">{{'https://buzondenavidad.com/list/' + this.list.uid}}</a>
         </div>
         <v-divider />
         <div class="display-flex pt-6">
@@ -63,7 +63,7 @@ export default {
     send () {
       this.$refs['sms-form'].validate()
       if (this.valid) {
-        this.$strapi.create('sms', { phone: this.to, link: 'https://buzondenavidad.com/list/' + this.list.id })
+        this.$strapi.create('sms', { phone: this.to, link: 'https://buzondenavidad.com/list/' + this.list.uid })
           .then((response) => {
             this.close()
             console.log(response)

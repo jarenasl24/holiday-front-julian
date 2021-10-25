@@ -43,9 +43,26 @@
       </v-col>
     </v-row>
     <v-row v-if="list" class="mb-10">
-      <v-col v-for="product in list.products" :key="product.id" cols="12" md="4">
+      <v-carousel
+        v-model="carousel"
+        style="border-radius: 5px;"
+        hide-delimiters
+        :show-arrows="productsDivided.length > 1"
+      >
+        <v-carousel-item
+          v-for="(products, index) in productsDivided"
+          :key="index"
+        >
+          <v-row>
+            <v-col v-for="product in products" :key="product.id" cols="12" md="4">
+            <ProductCard :product="product" :selected="isSelectedProduct(product)" @click="() => {} " />
+            </v-col>
+          </v-row>
+        </v-carousel-item>
+      </v-carousel>
+      <!--<v-col v-for="product in list.products" :key="product.id" cols="12" md="4">
         <ProductCard :product="product" :selected="isSelectedProduct(product)" @click="() => {} " />
-      </v-col>
+      </v-col>-->
     </v-row>
     <ShareDialog
       v-if="list"
@@ -79,7 +96,8 @@ export default {
       showShare: false,
       showSave: false,
       showEmail: false,
-      showSms: false
+      showSms: false,
+      carousel: 0
     }
   },
   async mounted () {
@@ -88,7 +106,7 @@ export default {
     })
     try {
       const lists = await this.$strapi.find('wish-lists', {
-        id: this.$route.params.id
+        uid: this.$route.params.uid
       })
       this.list = lists[0]
     } catch (error) {
@@ -101,6 +119,24 @@ export default {
     isSelectedProduct (product) {
       return this.$store.getters['wishList/productos']
         .filter(p => p.id === product.id).length >= 1
+    }
+  },
+  computed: {
+    productsDivided () {
+      const products = []
+      if (this.list) {
+        let aux = []
+        this.list.products.forEach((product, index) => {
+          aux.push(product)
+          console.log(aux)
+          if (index % 3 === 2 || index === (this.list.products.length - 1)) {
+            const aux2 = aux.map(p => p)
+            products.push(aux2)
+            aux = []
+          }
+        })
+      }
+      return products
     }
   }
 }
