@@ -15,7 +15,7 @@
         <v-col cols="12" md="8" class="align-self-center">
           <v-row>
             <v-col cols="12" md="3" class="font-size-13 text-primary font-weight-bold text-left text-md-right">
-              <a class="text-white">
+              <a href="https://walmartpr.com/politica-de-privacidad/" target="_blank" class="text-white text-decoration-none">
                 Política de Privacidad
               </a>
             </v-col>
@@ -28,9 +28,9 @@
               </a>
             </v-col>
             <v-col cols="12" md="6"  class="font-size-13 text-primary text-left text-md-right">
-              <a href="https://walmartpr.com/politica-de-privacidad/" target="_blank" class="text-white text-decoration-none">
+              <div class="text-white text-decoration-none">
                 Copyright 2021 Wal-Mart Stores. All Rights Reserved.
-              </a>
+              </div>
             </v-col>
           </v-row>
         </v-col>

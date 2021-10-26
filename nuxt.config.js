@@ -1,14 +1,16 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - Buzón de Navidad',
     title: 'Buzón de Navidad',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'Crea tu lista de regalos con Walmart Puerto Rico.' },
       { name: 'format-detection', content: 'telephone=no' },
       { hid: 'og:image', property: 'og:image', content: '/ogImage.png' },
+      { property: 'og:title', content: 'Buzón de Navidad'},
+      { property: 'og:description', content: 'Crea tu lista de regalos con Walmart Puerto Rico.'},
+      { property: 'og:url', content: 'https://buzondenavidad.com/'},
       { name: 'facebook-domain-verification', content: 'shx1pw5qxn39ywicy5araksdmadlli' }
     ],
     link: [
@@ -24,7 +26,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~/plugins/infiniteloading', ssr: false },
-    '~/plugins/gtm'
+    '~/plugins/gtm',
+    '~/plugins/firebase.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -47,7 +50,8 @@ export default {
     '@nuxtjs/strapi',
     '@nuxtjs/google-analytics',
     '@nuxtjs/gtm',
-    'nuxt-facebook-pixel-module'
+    'nuxt-facebook-pixel-module',
+    '@nuxtjs/auth-next'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

@@ -6,7 +6,9 @@
     :class="`card px-4 rouned-15 ${selected? 'card-activate' : ''}`">
     <v-card-title>
       <div class="full-width d-flex justify-end">
-        <div class="bg-green text-white border-radius-30 px-4 py-2 font-size-12">
+        <div
+          class="text-white border-radius-30 px-4 py-2 font-size-12"
+          :style="`background-color: ${getAgeGroupColor(product)}`">
           {{product.age_groups ? product.age_groups[0].name: ''}}
         </div>
       </div>
@@ -47,9 +49,17 @@
           {{ product.reduced_price ? '$ ' + product.price : '' }}
         </span>
       </div>
-      <div :style="`height: ${nombreHeight}`" class="d-flex place-items-center font-weight-bold text-black font-size-description min-height50">
+      <div
+        :style="`height: ${nombreHeight}`"
+        class="d-flex place-items-center font-weight-bold text-black font-size-description min-height50"
+        @click="showNombreTooltip=true">
         {{ name }}
       </div>
+      <v-tooltip
+        v-model="showNombreTooltip"
+      >
+        <div>{{product.name}}</div>
+      </v-tooltip>
       <div :style="`height: ${descriptionHeight}`" class="d-flex place-items-center text-black font-size-description">{{ description }}</div>
     </v-card-text>
     <v-card-actions class="mt-0">
@@ -88,9 +98,12 @@ export default {
   data: () => ({
     model: 0,
     imageHeight: 250,
-    nombreHeight: '30px',
-    descriptionHeight: '30px',
-    textLenght: 80
+    nombreHeight: '50px',
+    descriptionHeight: '50px',
+    textLenghtNombre: 50,
+    textLenghtDescription: 50,
+    showNombreTooltip: false,
+    showDescripcionTooltip: false
   }),
   computed: {
     productIsRollback () {
@@ -98,13 +111,22 @@ export default {
       return this.product.reduced_price
     },
     name () {
-      return this.product.name.length > this.textLenght ? `${this.product.name.substr(0, this.textLenght)}...` : this.product.name
+      return this.product.name.length > this.textLenghtNombre ? `${this.product.name.substr(0, this.textLenghtNombre)}...` : this.product.name
     },
     description () {
-      return this.product.description.length > this.textLenght ? `${this.product.description.substr(0, this.textLenght)}...` : this.product.description
+      return this.product.description.length > this.textLenghtDescription ? `${this.product.description.substr(0, this.textLenghtDescription)}...` : this.product.description
     }
   },
   methods: {
+    getAgeGroupColor (product) {
+      if (product.age_groups) {
+        if (product.age_groups[0].color) {
+          const color = JSON.parse(product.age_groups[0].color)
+          return color.hex
+        }
+      }
+      return '#FFFFFF'
+    },
     click () {
       this.$emit('click')
     }

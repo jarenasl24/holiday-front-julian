@@ -128,7 +128,6 @@ export default {
         let aux = []
         this.list.products.forEach((product, index) => {
           aux.push(product)
-          console.log(aux)
           if (index % 3 === 2 || index === (this.list.products.length - 1)) {
             const aux2 = aux.map(p => p)
             products.push(aux2)

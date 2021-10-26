@@ -29,7 +29,7 @@
               background-color-hover="primary"
               width="w-80p"
               show-text-on-mobile
-              @click="sendWhatsapp"
+              @click="googleSignIn"
             />
           </div>
           <div class="ma-4 text-center">
@@ -44,7 +44,7 @@
               background-color-hover="primary"
               width="w-80p"
               show-text-on-mobile
-              @click="sendMessenger"
+              @click="facebookSignIn"
             />
           </div>
           <div class="mt-10 text-center">
@@ -61,6 +61,7 @@
 </template>
 
 <script>
+// import firebase from 'firebase'
 import ActionButton from '../ActionButton'
 export default {
   name: 'SaveDialog',
@@ -81,6 +82,20 @@ export default {
     }
   },
   methods: {
+    googleSignIn () {
+      // this.provider = new firebase.auth.GoogleAuthProvider()
+      // firebase.auth().signInWithPopup(this.provider).then((result) => {
+      // store the user ore wathever
+      // console.log(result)
+      this.$router.push('/home')
+      // }).catch((e) => {
+      // this.$snotify.error(e.message)
+      // console.log(e)
+      // })
+    },
+    facebookSignIn () {
+      window.open('http://localhost:1337/connect/facebook')
+    },
     close () {
       this.$emit('close')
     }
