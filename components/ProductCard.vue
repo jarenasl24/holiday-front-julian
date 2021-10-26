@@ -52,15 +52,37 @@
       <div
         :style="`height: ${nombreHeight}`"
         class="d-flex place-items-center font-weight-bold text-black font-size-description min-height50"
-        @click="showNombreTooltip=true">
+        @click="setShowNombreTooltip">
         {{ name }}
       </div>
       <v-tooltip
         v-model="showNombreTooltip"
+        bottom
       >
+        <template v-slot:activator="{ on, attrs }">
+          <div
+            v-bind="attrs"
+            v-on="on" >
+          </div>
+        </template>
         <div>{{product.name}}</div>
       </v-tooltip>
-      <div :style="`height: ${descriptionHeight}`" class="d-flex place-items-center text-black font-size-description">{{ description }}</div>
+      <div
+        :style="`height: ${descriptionHeight}`"
+        class="d-flex place-items-center text-black font-size-description"
+        @click="setShowDescripcionTooltip">{{ description }}</div>
+      <v-tooltip
+        v-model="showDescripcionTooltip"
+        bottom
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <div
+            v-bind="attrs"
+            v-on="on" >
+          </div>
+        </template>
+        <div>{{product.description}}</div>
+      </v-tooltip>
     </v-card-text>
     <v-card-actions class="mt-0">
       <div
@@ -126,6 +148,16 @@ export default {
         }
       }
       return '#FFFFFF'
+    },
+    async setShowNombreTooltip () {
+      this.showNombreTooltip = true
+      await new Promise(resolve => setTimeout(resolve, 2000))
+      this.showNombreTooltip = false
+    },
+    async setShowDescripcionTooltip () {
+      this.showDescripcionTooltip = true
+      await new Promise(resolve => setTimeout(resolve, 2000))
+      this.showDescripcionTooltip = false
     },
     click () {
       this.$emit('click')

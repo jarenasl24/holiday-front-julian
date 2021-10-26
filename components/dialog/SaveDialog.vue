@@ -87,14 +87,15 @@ export default {
       // firebase.auth().signInWithPopup(this.provider).then((result) => {
       // store the user ore wathever
       // console.log(result)
-      this.$router.push('/home')
+      // this.$router.push('/home')
       // }).catch((e) => {
       // this.$snotify.error(e.message)
       // console.log(e)
       // })
+      window.open('https://buzondenavidad.com:1338/connect/google')
     },
     facebookSignIn () {
-      window.open('http://localhost:1337/connect/facebook')
+      window.open('https://buzondenavidad.com:1338/connect/facebook')
     },
     close () {
       this.$emit('close')
