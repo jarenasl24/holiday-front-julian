@@ -39,7 +39,7 @@ export default {
     }
   },
   async created () {
-    this.edades = await this.$strapi.find('age-groups')
+    this.edades = await this.$strapi.find('age-groups', { _sort: 'order:ASC' })
   },
   methods: {
     change (ageGroup) {

@@ -1,6 +1,6 @@
 <template>
   <v-app class="bg-red">
-    <v-main>
+    <div>
       <v-container>
         <v-toolbar
           color="elevation-0 bg-red"
@@ -17,10 +17,10 @@
           <v-toolbar-title />
         </v-toolbar>
       </v-container>
-      <v-container>
+      <v-container class="mb-sm-180px">
         <Nuxt />
       </v-container>
-    </v-main>
+    </div>
     <Footer background-color="red" dividerColor="white" absolute />
   </v-app>
 </template>

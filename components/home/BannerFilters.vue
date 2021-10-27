@@ -2,7 +2,7 @@
   <v-row>
     <v-col cols="6" md="8">
       <v-row>
-        <v-col cols="12" md="2">
+        <v-col cols="12" md="3">
           <action-button
             text="filtros"
             icon="fa-sliders-h"
@@ -17,7 +17,7 @@
             @click="showFilters"
           />
         </v-col>
-        <v-col cols="12" md="10" class="hidden-sm-and-down">
+        <v-col cols="12" md="9" class="hidden-sm-and-down">
           <div class="d-flex text-no-wrap overflow-x-auto overflow-y-hidden">
             <FilterButton v-if="filters.ageGroup" :text="filters.ageGroup.name" @action="removeAgeFilter" />
             <FilterButton

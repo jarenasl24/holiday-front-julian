@@ -34,6 +34,7 @@
     <v-footer class="bg-secondary px-0">
       <Subcribe />
     </v-footer>
+    <UserErrorDialog v-model="showUserErrorDialog" :provider="providerUser" @close="showUserErrorDialog = false" />
   </div>
 </template>
 <script>
@@ -43,12 +44,15 @@ import Header from '../components/home/Header'
 import BannerFilters from '../components/home/BannerFilters'
 import getProducts from '../api/products'
 import ListCompleteDialog from '../components/dialog/ListCompleteDialog'
+import UserErrorDialog from '../components/dialog/UserErrorDialog'
 
 export default {
-  components: { ListCompleteDialog, BannerFilters, Header, Subcribe, ProductCard },
+  components: { UserErrorDialog, ListCompleteDialog, BannerFilters, Header, Subcribe, ProductCard },
   data () {
     return {
-      alertCompletedShowed: false
+      alertCompletedShowed: false,
+      showUserErrorDialog: Boolean(this.$route.query.userError),
+      providerUser: this.$route.query.provider
     }
   },
   computed: {

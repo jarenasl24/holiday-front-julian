@@ -1,5 +1,13 @@
 <template>
   <div>
+    <img
+      src="/background-confeti-list.png"
+      class="hidden-sm-and-down"
+      style="position: absolute;left: -20%;top: 10%;height: 80%;z-index: 0;" />
+    <img
+      src="/background-confeti-list.png"
+      class="hidden-sm-and-down"
+      style="position: absolute;right: -20%;top: 10%;height: 80%;z-index: 0;" />
     <v-row
       color="elevation-0"
       class="bg-red mb-8"
@@ -9,45 +17,47 @@
           Tu lista de deseos
         </h1>
       </v-col>
-      <v-col cols="6" md="3">
-        <div>
-          <action-button
-            text="Compartir"
-            icon="fa-share-alt"
-            border-color="primary"
-            border-color-hover="primary"
-            text-color="primary"
-            text-color-hover="secondary"
-            background-color="red"
-            background-color-hover="primary"
-            show-text-on-mobile
-            @click="showShare = true"
-          />
-        </div>
-      </v-col>
-      <v-col cols="6" md="3">
-        <div class="ml-4">
-          <action-button
-            text="Guardar"
-            icon="fa-bookmark"
-            border-color="primary"
-            border-color-hover="primary"
-            text-color="primary"
-            text-color-hover="secondary"
-            background-color="red"
-            background-color-hover="primary"
-            show-text-on-mobile
-            @click="showSave = true"
-          />
+      <v-col cols="12" md="6">
+        <div class="d-flex justify-end">
+          <div>
+            <action-button
+              text="Compartir"
+              icon="fa-share-alt"
+              border-color="primary"
+              border-color-hover="primary"
+              text-color="primary"
+              text-color-hover="secondary"
+              background-color="red"
+              background-color-hover="primary"
+              show-text-on-mobile
+              @click="showShare = true"
+            />
+          </div>
+          <div class="ml-4">
+            <action-button
+              text="Guardar"
+              icon="fa-bookmark"
+              border-color="primary"
+              border-color-hover="primary"
+              text-color="primary"
+              text-color-hover="secondary"
+              background-color="red"
+              background-color-hover="primary"
+              show-text-on-mobile
+              @click="showSave = true"
+            />
+          </div>
         </div>
       </v-col>
     </v-row>
-    <v-row v-if="list" class="mb-10">
+    <v-row v-if="list" class="mb-16">
       <v-carousel
         v-model="carousel"
         style="border-radius: 5px;"
         hide-delimiters
+        height="550"
         :show-arrows="productsDivided.length > 1"
+        class="hidden-sm-and-down"
       >
         <v-carousel-item
           v-for="(products, index) in productsDivided"
@@ -55,7 +65,7 @@
         >
           <v-row>
             <v-col v-for="product in products" :key="product.id" cols="12" md="4">
-            <ProductCard :product="product" :selected="isSelectedProduct(product)" @click="() => {} " />
+              <ProductCardList :product="product" @click="() => {} " />
             </v-col>
           </v-row>
         </v-carousel-item>
@@ -63,6 +73,9 @@
       <!--<v-col v-for="product in list.products" :key="product.id" cols="12" md="4">
         <ProductCard :product="product" :selected="isSelectedProduct(product)" @click="() => {} " />
       </v-col>-->
+      <v-col v-for="product in list.products" :key="product.id" cols="12" md="4" class="hidden-md-and-up">
+        <ProductCardList :product="product" @click="() => {} " />
+      </v-col>
     </v-row>
     <ShareDialog
       v-if="list"
@@ -142,5 +155,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

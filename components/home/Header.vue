@@ -7,13 +7,13 @@
       <p class="font-size-20 mb-4">Navidades en Walmart</p>
       <h1 class="font-size-60 line-height-normal mb-0">¡Crea tu lista de regalos!</h1>
       <h3 class="font-size-24 mb-6">¿Cuántos regalos quieres en tu lista?</h3>
+      <p class="text-white font-size-12 mb-0 ml-4">CANTIDAD DE REGALOS</p>
       <div class="ma-0 d-flex border-color-primary border-radius-30 border-solid-2 bg-white">
         <div class="w-60p">
           <v-select
             id="fieldCantidad"
             v-model="cantidad"
             :items="cantidades"
-            :label="labelCantidad"
             color="black"
             class="cantidad-select full-width fill-height px-4 mb-0 pb-0 pt-1 font-size-12"
             required="true"

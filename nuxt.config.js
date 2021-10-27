@@ -51,11 +51,12 @@ export default {
     '@nuxtjs/google-analytics',
     '@nuxtjs/gtm',
     'nuxt-facebook-pixel-module',
-    '@nuxtjs/auth-next'
+    '@nuxtjs/auth-next',
+    'cookie-universal-nuxt'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: { url: process.env.STRAPI_URL || 'http://localhost:1337' },
 
   googleAnalytics: {
     id: process.env.GOOGLE_ANALYTICS_ID, // Use as fallback if no runtime config is provided

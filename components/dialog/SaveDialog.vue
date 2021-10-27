@@ -47,13 +47,17 @@
               @click="facebookSignIn"
             />
           </div>
-          <div class="mt-10 text-center">
-            <v-radio v-model="terminos" color="primary" class="place-content-center">
-              <slot slot="label">
-                <div class="text-primary">Acepta <a href="https://walmartpr.com/terminos-de-uso/" target="_blank" class="text-decoration-underline">términos y condiciones</a></div>
-              </slot>
-            </v-radio>
-          </div>
+          <v-form ref="terms-form" v-model="valid" class="d-flex mt-10 text-center">
+            <v-radio-group v-model="terminos" :rules="termRules" class="place-content-center mr-2 my-0">
+              <v-radio value="acepta" color="primary" class="">
+                <slot slot="label">
+                  <div class="text-primary">Acepta</div>
+                </slot>
+              </v-radio>
+            </v-radio-group>
+            <a href="https://walmartpr.com/terminos-de-uso/" target="_blank" class="text-decoration-underline mt-1">términos y condiciones</a>
+          </v-form>
+          <p v-show="!valid" class="text-red font-size-12">Debes aceptar terminos y condiciones</p>
         </div>
       </div>
     </div>
@@ -78,7 +82,9 @@ export default {
   },
   data () {
     return {
-      terminos: false
+      terminos: null,
+      termRules: [v => !!v || ''],
+      valid: true
     }
   },
   methods: {
@@ -92,10 +98,14 @@ export default {
       // this.$snotify.error(e.message)
       // console.log(e)
       // })
-      window.open('https://buzondenavidad.com:1338/connect/google')
+      if (this.$refs['terms-form'].validate()) {
+        window.open('https://buzondenavidad.com:1338/connect/google')
+      }
     },
     facebookSignIn () {
-      window.open('https://buzondenavidad.com:1338/connect/facebook')
+      if (this.$refs['terms-form'].validate()) {
+        window.open('https://buzondenavidad.com:1338/connect/facebook')
+      }
     },
     close () {
       this.$emit('close')

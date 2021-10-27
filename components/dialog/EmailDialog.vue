@@ -43,7 +43,7 @@
         </div>
         <v-divider />
         <div class="display-flex pt-6">
-          <div class="border-color-black border-radius-10 border-solid-2 py-2 px-16 text-black hover-pointer" @click="sendEmail">Enviar</div>
+          <div class="border-color-blue border-radius-10 border-solid-2 py-2 px-16 text-secondary hover-pointer" @click="sendEmail">Enviar</div>
           <v-spacer />
           <v-icon color="secondary" @click="close">far fa-trash-alt</v-icon>
         </div>

@@ -3,17 +3,16 @@
     outlined
     max-width="100%"
     max-height="550"
-    :class="`card px-4 rouned-15 ${selected? 'card-activate' : ''}`">
+    :class="`card px-4 rouned-15`">
     <v-card-title>
       <div class="full-width d-flex justify-end">
         <div
           class="text-white border-radius-30 px-4 py-2 font-size-12"
-          :style="`background-color: ${getAgeGroupColor(product)}`">
-          {{product.age_groups ? product.age_groups[0].name: ''}}
+          :style="`background-color: ${getAgeGroupColor(ageGroups)}`">
+          {{ageGroups ? ageGroups[0].name: ''}}
         </div>
       </div>
       <v-carousel
-        v-if="!selected"
         v-model="model"
         style="border-radius: 5px;"
         hide-delimiters
@@ -29,13 +28,6 @@
           </div>
         </v-carousel-item>
       </v-carousel>
-      <div v-show="selected" class="full-width d-flex justify-center">
-        <img
-          v-show="selected"
-          :height="imageHeight"
-          width="235"
-          src="/Grupo 52.png" />
-      </div>
     </v-card-title>
     <v-card-text>
       <div style="height: 40px; margin-top: -40px">
@@ -91,31 +83,13 @@
     </v-card-text>
     <v-card-actions class="mt-0">
       <div
-        v-if="product.inStock"
-        :class="`text-secondary font-weight-bold text-uppercase border-button px-3 py-2
-        bg-white hover-pointer min-width-180 text-center
-        ${selected ? 'bg-primary' : ''}`"
+        class="text-secondary font-weight-bold text-uppercase border-button px-8 py-2
+        bg-white hover-pointer text-center"
         @click="click"
       >
         <v-row>
-          <v-col cols="8">
-            <div>{{ selected? 'Agregado': 'Agregar' }}</div>
-          </v-col>
-          <v-col cols="4">
-            <v-icon v-if="!selected" color="secondary">fa-plus-circle</v-icon>
-            <v-icon v-if="selected" color="secondary">fa-check-circle</v-icon>
-          </v-col>
-        </v-row>
-      </div>
-      <div
-        v-else
-        :class="`text-red font-weight-bold text-uppercase border-color-red border-radius-30 border-solid-3 px-3 py-2
-        bg-white min-width-180 text-center
-        ${selected ? 'bg-primary' : ''}`"
-      >
-        <v-row>
           <v-col cols="12">
-            <div>No disponible</div>
+            <v-icon color="secondary">fas fa-trash-alt</v-icon>
           </v-col>
         </v-row>
       </div>
@@ -125,26 +99,31 @@
 
 <script>
 export default {
-  name: 'ProductCard',
+  name: 'ProductCardList',
   props: {
-    selected: {
-      type: Boolean,
-      default: false
-    },
     product: {
       type: Object
     }
   },
-  data: () => ({
-    model: 0,
-    imageHeight: 250,
-    nombreHeight: '50px',
-    descriptionHeight: '50px',
-    textLenghtNombre: 50,
-    textLenghtDescription: 50,
-    showNombreTooltip: false,
-    showDescripcionTooltip: false
-  }),
+  async mounted () {
+    if (!this.ageGroups) {
+      const p = await this.$strapi.findOne('products', this.product.id)
+      this.ageGroups = p.age_groups
+    }
+  },
+  data () {
+    return {
+      model: 0,
+      ageGroups: this.product.age_groups,
+      imageHeight: 250,
+      nombreHeight: '50px',
+      descriptionHeight: '50px',
+      textLenghtNombre: 50,
+      textLenghtDescription: 50,
+      showNombreTooltip: false,
+      showDescripcionTooltip: false
+    }
+  },
   computed: {
     productIsRollback () {
       console.log(this.product)
@@ -158,10 +137,10 @@ export default {
     }
   },
   methods: {
-    getAgeGroupColor (product) {
-      if (product.age_groups) {
-        if (product.age_groups[0].color) {
-          const color = JSON.parse(product.age_groups[0].color)
+    getAgeGroupColor () {
+      if (this.ageGroups) {
+        if (this.ageGroups[0].color) {
+          const color = JSON.parse(this.ageGroups[0].color)
           return color.hex
         }
       }
