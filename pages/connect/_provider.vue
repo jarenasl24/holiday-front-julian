@@ -10,12 +10,14 @@ export default {
     return {
       provider: this.$route.params.provider,
       id_token: this.$route.query.id_token,
-      access_token: this.$route.query.access_token
+      access_token: this.$route.query.access_token,
+      listUid: this.$cookies.get('listUid')
     }
   },
   mounted () {
     console.log('mounted')
     console.log(this.$route)
+    console.log(this.listUid)
     try {
       this.$axios({
         method: 'GET',
@@ -24,6 +26,17 @@ export default {
         .then((res) => {
           console.log(res)
           const { user } = res.data
+          if (this.listUid) {
+            this.$strapi.find('wish-lists', { uid: this.listUid }).then(
+              (result) => {
+                if (result[0]) {
+                  const list = result[0]
+                  list.users.push(user)
+                  this.$strapi.update('wish-list', list.id, list)
+                }
+              }
+            )
+          }
           this.$router.push(`/users/${user.id}`)
         }).catch((er) => {
           console.log(er)

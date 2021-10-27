@@ -99,6 +99,7 @@ export default {
       // console.log(e)
       // })
       if (this.$refs['terms-form'].validate()) {
+        this.$cookies.set('listUid', this.list.uid)
         window.open('https://buzondenavidad.com:1338/connect/google')
       }
     },
