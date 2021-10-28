@@ -18,80 +18,33 @@
           />
         </v-col>
         <v-col cols="12" md="9" class="hidden-sm-and-down">
-          <div class="d-flex text-no-wrap overflow-x-auto overflow-y-hidden">
-            <FilterButton v-if="filters.ageGroup" :text="filters.ageGroup.name" @action="removeAgeFilter" />
-            <FilterButton
-              v-for="categorie in filters.categories"
-              :key="categorie.id"
-              :text="categorie.name"
-              @action="() => removeCategoryFilter(categorie)">
-            </FilterButton>
-          </div>
+          <SelectedFilters />
         </v-col>
       </v-row>
     </v-col>
     <v-col cols="6" md="4" class="align-self-center">
-      <div class="text-primary text-right">
-        <v-select :value="sortSelected" :items="sortOptions" @change="setSortSelected">
-          <slot slot="label">
-            <!--<span class="hidden-sm-and-down text-primary">{{ sortSelected }}</span>
-            <v-icon color="primary">fa-chevron-down</v-icon>-->
-          </slot>
-          <slot slot="selection">
-            <div class="font-weight-bold text-primary full-width text-right text-no-wrap">
-              Ordenar por <span class="hidden-sm-and-down">|</span>
-              <span class="font-weight-regular hidden-sm-and-down text-primary mr-1">{{ sortSelected }}</span>
-            </div>
-          </slot>
-          <template v-slot:append>
-            <v-icon color="primary">fa-chevron-down</v-icon>
-          </template>
-        </v-select>
-      </div>
+      <SortFilter />
     </v-col>
     <v-col cols="12">
       <v-divider class="border-color-primary" />
+    </v-col>
+    <v-col cols="12" class="hidden-md-and-up">
+      <SelectedFilters />
     </v-col>
   </v-row>
 </template>
 
 <script>
 import ActionButton from '../ActionButton'
-import FilterButton from '../FilterButton'
-import { NOMBRE_A_Z, NOMBRE_Z_A, PRECIO_MAYOR_MENOR, PRECIO_MENOR_MAYOR } from '../../static/const'
+import SelectedFilters from '../filters/SelectedFilters'
+import SortFilter from '../filters/SortFilter'
 export default {
   name: 'BannerFilters',
-  components: { FilterButton, ActionButton },
-  data () {
-    return {
-      sortOptions: [NOMBRE_A_Z, NOMBRE_Z_A, PRECIO_MENOR_MAYOR, PRECIO_MAYOR_MENOR]
-    }
-  },
-  computed: {
-    sortSelected () {
-      return this.$store.getters['filters/sort']
-    },
-    filters () {
-      return this.$store.getters['filters/filters']
-    }
-  },
+  components: { SortFilter, SelectedFilters, ActionButton },
   methods: {
     showFilters () {
       this.$store.commit('setShowFilters', true)
       this.$store.dispatch('lastFilters/setLastFilters', this.$store.getters['filters/filters'])
-    },
-    removeAgeFilter () {
-      this.$store.commit('filters/setAgeGroup', null)
-      this.$store.dispatch('products/aplicarFiltros', this.$store.getters['filters/filters'])
-    },
-    removeCategoryFilter (category) {
-      this.$store.commit('filters/removeCategory', category)
-      this.$store.dispatch('products/aplicarFiltros', this.$store.getters['filters/filters'])
-    },
-    setSortSelected (value) {
-      console.log(value)
-      this.$store.commit('filters/setSort', value)
-      this.$store.dispatch('products/aplicarFiltros', this.$store.getters['filters/filters'])
     }
   }
 }

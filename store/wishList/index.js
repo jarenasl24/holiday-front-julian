@@ -30,7 +30,7 @@ export const actions = {
           context.commit('addProduct', product)
         })
     } else {
-      const products = context.getters.productos.map(p => p)
+      const products = context.getters.products.map(p => p)
       products.push(product)
       this.$strapi.update('wish-lists', id, { products })
         .then((result) => {
@@ -41,7 +41,7 @@ export const actions = {
   },
   removeProduct (context, product) {
     const id = context.getters.id
-    const products = context.getters.productos.filter(p => p.id !== product.id)
+    const products = context.getters.products.filter(p => p.id !== product.id)
     this.$strapi.update('wish-lists', id, { products })
       .then((result) => {
         context.commit('removeProduct', product)
@@ -56,7 +56,7 @@ export const getters = {
   uid: (state) => {
     return state.uid
   },
-  productos: (state) => {
+  products: (state) => {
     return state.productos
   }
 }

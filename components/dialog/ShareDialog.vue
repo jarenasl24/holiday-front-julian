@@ -5,19 +5,19 @@
     class="border-radius-30"
     @input="close"
   >
-    <div class="text-white bg-secondary border-radius-30 py-8 px-8">
+    <div class="text-white bg-secondary border-radius-30 pa-4 pa-md-8">
       <div class="hover-pointer text-right">
         <v-icon color="white" size="50" @click="close">
           far fa-times-circle
         </v-icon>
       </div>
-      <div class="py-16 px-8">
+      <div class="py-8 px-4 px-md-8 py-md-16">
         <h1 class="text-h5 font-weight-bold text-center">
           ¡Comparte tu lista de regalos!
         </h1>
         <div class="mt-4">
           <v-divider class="border-color-primary mb-10" />
-          <div class="ma-4 text-center">
+          <div class="ma-md-4 ma-4 text-center">
             <action-button
               text="Whatsapp"
               icon="fab fa-whatsapp"
@@ -27,12 +27,12 @@
               text-color-hover="secondary"
               background-color="secondary"
               background-color-hover="primary"
-              width="w-80p"
+              width="w-80p w-sm-100p"
               show-text-on-mobile
               @click="sendWhatsapp"
             />
           </div>
-          <div class="ma-4 text-center">
+          <div class="ma-md-4 ma-4 text-center">
             <action-button
               text="Messenger"
               icon="fab fa-facebook-messenger"
@@ -42,12 +42,12 @@
               text-color-hover="secondary"
               background-color="secondary"
               background-color-hover="primary"
-              width="w-80p"
+              width="w-80p w-sm-100p"
               show-text-on-mobile
               @click="sendMessenger"
             />
           </div>
-          <div class="ma-4 text-center">
+          <div class="ma-md-4 ma-4 text-center">
             <action-button
               text="Email"
               icon="fa-envelope"
@@ -57,12 +57,12 @@
               text-color-hover="secondary"
               background-color="secondary"
               background-color-hover="primary"
-              width="w-80p"
+              width="w-80p w-sm-100p"
               show-text-on-mobile
               @click="openEmail"
             />
           </div>
-          <div class="ma-4 text-center">
+          <div class="ma-md-4 ma-4 text-center">
             <action-button
               text="SMS"
               icon="fa-comments"
@@ -72,7 +72,7 @@
               text-color-hover="secondary"
               background-color="secondary"
               background-color-hover="primary"
-              width="w-80p"
+              width="w-80p w-sm-100p"
               show-text-on-mobile
               @click="openSms"
             />

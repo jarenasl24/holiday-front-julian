@@ -18,8 +18,8 @@
         </h1>
       </v-col>
       <v-col cols="12" md="6">
-        <div class="d-flex justify-end">
-          <div>
+        <div class="d-flex justify-center justify-md-end">
+          <div class="mr-1 mr-md-2">
             <action-button
               text="Compartir"
               icon="fa-share-alt"
@@ -33,7 +33,7 @@
               @click="showShare = true"
             />
           </div>
-          <div class="ml-4">
+          <div class="ml-1 ml-md-2">
             <action-button
               text="Guardar"
               icon="fa-bookmark"
@@ -65,16 +65,13 @@
         >
           <v-row>
             <v-col v-for="product in products" :key="product.id" cols="12" md="4">
-              <ProductCardList :product="product" @click="() => {} " />
+              <ProductCardList :product="product" @click="() => { deleteProduct(product) }" />
             </v-col>
           </v-row>
         </v-carousel-item>
       </v-carousel>
-      <!--<v-col v-for="product in list.products" :key="product.id" cols="12" md="4">
-        <ProductCard :product="product" :selected="isSelectedProduct(product)" @click="() => {} " />
-      </v-col>-->
       <v-col v-for="product in list.products" :key="product.id" cols="12" md="4" class="hidden-md-and-up">
-        <ProductCardList :product="product" @click="() => {} " />
+        <ProductCardList :product="product" @click="() => { deleteProduct(product) }" />
       </v-col>
     </v-row>
     <ShareDialog
@@ -100,8 +97,9 @@ import EmailDialog from '../../components/dialog/EmailDialog'
 import SmsDialog from '../../components/dialog/SmsDialog'
 import ActionButton from '../../components/ActionButton'
 import SaveDialog from '../../components/dialog/SaveDialog'
+import ProductCardList from '../../components/ProductCardList'
 export default {
-  components: { SaveDialog, ActionButton, SmsDialog, EmailDialog, ShareDialog },
+  components: { ProductCardList, SaveDialog, ActionButton, SmsDialog, EmailDialog, ShareDialog },
   layout: 'redLayout',
   data () {
     return {
@@ -111,6 +109,23 @@ export default {
       showEmail: false,
       showSms: false,
       carousel: 0
+    }
+  },
+  computed: {
+    productsDivided () {
+      const products = []
+      if (this.list) {
+        let aux = []
+        this.list.products.forEach((product, index) => {
+          aux.push(product)
+          if (index % 3 === 2 || index === (this.list.products.length - 1)) {
+            const aux2 = aux.map(p => p)
+            products.push(aux2)
+            aux = []
+          }
+        })
+      }
+      return products
     }
   },
   async mounted () {
@@ -130,25 +145,12 @@ export default {
   },
   methods: {
     isSelectedProduct (product) {
-      return this.$store.getters['wishList/productos']
+      return this.$store.getters['wishList/products']
         .filter(p => p.id === product.id).length >= 1
-    }
-  },
-  computed: {
-    productsDivided () {
-      const products = []
-      if (this.list) {
-        let aux = []
-        this.list.products.forEach((product, index) => {
-          aux.push(product)
-          if (index % 3 === 2 || index === (this.list.products.length - 1)) {
-            const aux2 = aux.map(p => p)
-            products.push(aux2)
-            aux = []
-          }
-        })
-      }
-      return products
+    },
+    deleteProduct (product) {
+      this.list.products = this.list.products.filter(p => p.id !== product.id)
+      this.$strapi.update('wish-lists', this.list.id, this.list)
     }
   }
 }

@@ -32,7 +32,7 @@ export default {
                 if (result[0]) {
                   const list = result[0]
                   list.users.push(user)
-                  this.$strapi.update('wish-list', list.id, list)
+                  this.$strapi.update('wish-lists', list.id, list)
                 }
               }
             )

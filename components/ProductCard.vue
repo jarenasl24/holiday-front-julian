@@ -3,13 +3,15 @@
     outlined
     max-width="100%"
     max-height="550"
-    :class="`card px-4 rouned-15 ${selected? 'card-activate' : ''}`">
+    :class="`card px-4 round-15 ${selected? 'card-activate' : ''}`"
+  >
     <v-card-title>
       <div class="full-width d-flex justify-end">
         <div
           class="text-white border-radius-30 px-4 py-2 font-size-12"
-          :style="`background-color: ${getAgeGroupColor(product)}`">
-          {{product.age_groups ? product.age_groups[0].name: ''}}
+          :style="`background-color: ${getAgeGroupColor(product)}`"
+        >
+          {{ product.age_groups ? product.age_groups[0].name: '' }}
         </div>
       </div>
       <v-carousel
@@ -37,11 +39,13 @@
           src="/Grupo 52.png" />
       </div>
     </v-card-title>
-    <v-card-text>
+    <v-card-text class="pb-0">
       <div style="height: 40px; margin-top: -40px">
         <div
           v-if="productIsRollback"
-           class="border-radius-30 border-solid-1 border-color-chip d-inline py-1 px-4 text-uppercase text-chip font-size-11">Rollback</div>
+          class="border-radius-30 border-solid-1 border-color-chip d-inline py-1 px-4 text-uppercase text-chip font-size-11">
+          Rollback
+        </div>
       </div>
       <div class="font-size-price text-black font-weight-bold mb-2">
         {{ product.reduced_price ? '$ ' + product.reduced_price : '$ ' + product.price }}
@@ -50,46 +54,51 @@
         </span>
       </div>
       <div
-        :style="`height: ${nombreHeight}`"
+        :style="`min-height: ${nombreHeight}`"
         class="d-flex place-items-center font-weight-bold text-black font-size-description min-height50"
-        @click="setShowNombreTooltip">
+        @click="setShowNombreTooltip"
+      >
         {{ name }}
+        <v-tooltip
+          v-model="showNombreTooltip"
+          bottom
+        >
+          <template #activator="{ on, attrs }">
+            <div
+              v-bind="attrs"
+              v-on="on"
+            />
+          </template>
+          <div>{{ product.name }}</div>
+        </v-tooltip>
       </div>
-      <v-tooltip
-        v-model="showNombreTooltip"
-        bottom
-      >
-        <template v-slot:activator="{ on, attrs }">
-          <div
-            v-bind="attrs"
-            v-on="on" >
-          </div>
-        </template>
-        <div>{{product.name}}</div>
-      </v-tooltip>
-      <v-row>
-        <v-col
-          cols="10"
-          :style="`height: ${descriptionHeight}`"
-          class="d-flex place-items-center text-black font-size-description"
+      <div
+        class="d-flex justify-space-between"
+        :style="`min-height: ${descriptionHeight}`">
+        <p
+          class="align-self-center text-black font-size-description lines-2"
           @mouseenter="showDescripcionTooltip=true"
-          @mouseleave="showDescripcionTooltip=false">{{ description }}</v-col>
-        <v-col cols="2"><img src="/info-tooltip.svg" width="20" @click="setShowDescripcionTooltip" /></v-col>
-      </v-row>
-      <v-tooltip
-        v-model="showDescripcionTooltip"
-        bottom
-      >
-        <template v-slot:activator="{ on, attrs }">
-          <div
-            v-bind="attrs"
-            v-on="on" >
+          @mouseleave="showDescripcionTooltip=false">{{ product.description }}</p>
+        <div class="align-self-center">
+          <img src="/info-tooltip.svg" width="20" alt="tooltip" @click="setShowDescripcionTooltip" >
+        </div>
+        <v-tooltip
+          v-model="showDescripcionTooltip"
+          bottom
+        >
+          <template #activator="{ on, attrs }">
+            <div
+              v-bind="attrs"
+              v-on="on" >
+            </div>
+          </template>
+          <div>
+            {{ product.description }}
           </div>
-        </template>
-        <div>{{product.description}}</div>
-      </v-tooltip>
+        </v-tooltip>
+      </div>
     </v-card-text>
-    <v-card-actions class="mt-0">
+    <v-card-actions class="mt-0 mb-1">
       <div
         v-if="product.inStock"
         :class="`text-secondary font-weight-bold text-uppercase border-button px-3 py-2
@@ -98,12 +107,16 @@
         @click="click"
       >
         <v-row>
-          <v-col cols="8">
-            <div>{{ selected? 'Agregado': 'Agregar' }}</div>
+          <v-col cols="9">
+            <p class="mb-0">{{ selected? 'Agregado': 'Agregar' }}</p>
           </v-col>
-          <v-col cols="4">
-            <v-icon v-if="!selected" color="secondary">fa-plus-circle</v-icon>
-            <v-icon v-if="selected" color="secondary">fa-check-circle</v-icon>
+          <v-col cols="3">
+            <v-icon v-if="!selected" color="secondary">
+              fa-plus-circle
+            </v-icon>
+            <v-icon v-if="selected" color="secondary">
+              fa-check-circle
+            </v-icon>
           </v-col>
         </v-row>
       </div>

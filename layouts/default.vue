@@ -18,7 +18,7 @@
       </div>
     </v-dialog>
     <v-main>
-      <v-container>
+      <v-container class="mb-sm-10px">
         <v-toolbar
           color="elevation-0 secondary"
         >

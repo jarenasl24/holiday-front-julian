@@ -29,7 +29,7 @@
         </v-carousel-item>
       </v-carousel>
     </v-card-title>
-    <v-card-text>
+    <v-card-text class="pb-0">
       <div style="height: 40px; margin-top: -40px">
         <div
           v-if="productIsRollback"
@@ -42,44 +42,46 @@
         </span>
       </div>
       <div
-        :style="`height: ${nombreHeight}`"
+        :style="`min-height: ${nombreHeight}`"
         class="d-flex place-items-center font-weight-bold text-black font-size-description min-height50"
         @click="setShowNombreTooltip">
         {{ name }}
+        <v-tooltip
+          v-model="showNombreTooltip"
+          bottom
+        >
+          <template #activator="{ on, attrs }">
+            <div
+              v-bind="attrs"
+              v-on="on" >
+            </div>
+          </template>
+          <div>{{ product.name }}</div>
+        </v-tooltip>
       </div>
-      <v-tooltip
-        v-model="showNombreTooltip"
-        bottom
-      >
-        <template v-slot:activator="{ on, attrs }">
-          <div
-            v-bind="attrs"
-            v-on="on" >
-          </div>
-        </template>
-        <div>{{product.name}}</div>
-      </v-tooltip>
-      <v-row>
-        <v-col
-          cols="10"
-          :style="`height: ${descriptionHeight}`"
-          class="d-flex place-items-center text-black font-size-description"
+      <div
+        class="d-flex justify-space-between"
+        :style="`min-height: ${descriptionHeight}`">
+        <p
+          class="align-self-center text-black font-size-description lines-2"
           @mouseenter="showDescripcionTooltip=true"
-          @mouseleave="showDescripcionTooltip=false">{{ description }}</v-col>
-        <v-col cols="2"><img src="/info-tooltip.svg" width="20" @click="setShowDescripcionTooltip" /></v-col>
-      </v-row>
-      <v-tooltip
-        v-model="showDescripcionTooltip"
-        bottom
-      >
-        <template v-slot:activator="{ on, attrs }">
-          <div
-            v-bind="attrs"
-            v-on="on" >
-          </div>
-        </template>
-        <div>{{product.description}}</div>
-      </v-tooltip>
+          @mouseleave="showDescripcionTooltip=false">{{ product.description }}</p>
+        <div class="align-self-center">
+          <img src="/info-tooltip.svg" width="20" alt="tooltip" @click="setShowDescripcionTooltip">
+        </div>
+        <v-tooltip
+          v-model="showDescripcionTooltip"
+          bottom
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <div
+              v-bind="attrs"
+              v-on="on" >
+            </div>
+          </template>
+          <div>{{product.description}}</div>
+        </v-tooltip>
+      </div>
     </v-card-text>
     <v-card-actions class="mt-0">
       <div

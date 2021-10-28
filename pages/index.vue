@@ -63,7 +63,7 @@ export default {
       return this.$store.getters['products/productos']
     },
     showListCompleted () {
-      return this.$store.getters['wishList/productos'].length === this.$store.getters.amountGifts && !this.alertCompletedShowed
+      return this.$store.getters['wishList/products'].length === this.$store.getters.amountGifts && !this.alertCompletedShowed
     }
   },
   methods: {
@@ -83,7 +83,7 @@ export default {
       })
     },
     isSelectedProduct (product) {
-      return this.$store.getters['wishList/productos']
+      return this.$store.getters['wishList/products']
         .filter(p => p.id === product.id).length >= 1
     },
     setProduct (product) {

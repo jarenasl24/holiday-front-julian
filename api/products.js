@@ -1,4 +1,4 @@
-import { NOMBRE_A_Z, NOMBRE_Z_A, PRECIO_MAYOR_MENOR, PRECIO_MENOR_MAYOR } from '../static/const'
+import { MAX_PRICE, NOMBRE_A_Z, NOMBRE_Z_A, PRECIO_MAYOR_MENOR, PRECIO_MENOR_MAYOR } from '../static/const'
 
 const getProducts = (strapi, filters, limit, start) => {
   const paramsArray = [
@@ -12,11 +12,10 @@ const getProducts = (strapi, filters, limit, start) => {
   if (filters.ageGroup) {
     paramsArray.push(['age_groups.id', filters.ageGroup.id])
   }
-  if (filters.priceRange[1] !== 50) {
+  if (filters.priceRange[1] !== MAX_PRICE) {
     paramsArray.push(['price_lt', filters.priceRange[1]])
   }
   if (filters.sort) {
-    console.log(filters.sort)
     if (filters.sort === PRECIO_MAYOR_MENOR) {
       paramsArray.push(['_sort', 'price:DESC'])
     } else if (filters.sort === PRECIO_MENOR_MAYOR) {

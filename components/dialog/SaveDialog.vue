@@ -5,17 +5,17 @@
     class="border-radius-30"
     @input="close"
   >
-    <div class="text-white bg-secondary border-radius-30 py-8 px-8">
+    <div class="text-white bg-secondary border-radius-30 pa-4 pa-md-8">
       <div class="hover-pointer text-right">
         <v-icon color="white" size="50" @click="close">
           far fa-times-circle
         </v-icon>
       </div>
-      <div class="py-16 px-8">
+      <div class="py-8 px-4 px-md-8 py-md-16">
         <h1 class="text-h5 font-weight-bold text-center">
           ¡Guarda tu lista de regalos!
         </h1>
-        <div class="mt-4">
+        <div class="ma-md-4 ma-4">
           <v-divider class="border-color-primary mb-10" />
           <div class="ma-4 text-center">
             <action-button
@@ -27,12 +27,12 @@
               text-color-hover="secondary"
               background-color="secondary"
               background-color-hover="primary"
-              width="w-80p"
+              width="w-80p w-sm-100p"
               show-text-on-mobile
               @click="googleSignIn"
             />
           </div>
-          <div class="ma-4 text-center">
+          <div class="ma-md-4 ma-4 text-center">
             <action-button
               text="FACEBOOK"
               icon="fab fa-facebook-f"
@@ -42,7 +42,7 @@
               text-color-hover="secondary"
               background-color="secondary"
               background-color-hover="primary"
-              width="w-80p"
+              width="w-80p w-sm-100p"
               show-text-on-mobile
               @click="facebookSignIn"
             />
@@ -50,14 +50,11 @@
           <v-form ref="terms-form" v-model="valid" class="d-flex mt-10 text-center">
             <v-radio-group v-model="terminos" :rules="termRules" class="place-content-center mr-2 my-0">
               <v-radio value="acepta" color="primary" class="">
-                <slot slot="label">
-                  <div class="text-primary">Acepta</div>
-                </slot>
               </v-radio>
             </v-radio-group>
-            <a href="https://walmartpr.com/terminos-de-uso/" target="_blank" class="text-decoration-underline mt-1">términos y condiciones</a>
+            <div class="text-primary mt-2">Acepta <a href="https://walmartpr.com/terminos-de-uso/" target="_blank" class="text-decoration-underline">términos y condiciones</a></div>
           </v-form>
-          <p v-show="!valid" class="text-red font-size-12">Debes aceptar terminos y condiciones</p>
+          <p v-show="!valid" class="text-white font-size-12">Debes aceptar terminos y condiciones</p>
         </div>
       </div>
     </div>

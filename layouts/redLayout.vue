@@ -5,7 +5,9 @@
         <v-toolbar
           color="elevation-0 bg-red"
         >
-          <img src="/logo-WPR.svg" height="35">
+          <nuxt-link to="/">
+            <img src="/logo-WPR.svg" height="35">
+          </nuxt-link>
           <v-spacer />
           <!--<v-badge
             color="primary"
