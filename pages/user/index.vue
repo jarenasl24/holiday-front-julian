@@ -16,6 +16,9 @@ export default {
     }
   },
   async mounted () {
+    if (!(this.user && this.listUid)) {
+      this.$router.push('/')
+    }
     this.$nextTick(() => {
       this.$nuxt.$loading.start()
     })
