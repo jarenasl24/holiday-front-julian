@@ -11,7 +11,7 @@
           far fa-times-circle
         </v-icon>
       </div>
-      <div class="py-8 px-4 px-md-8 py-md-16">
+      <div class="py-8 px-4 px-md-6 py-md-16">
         <h1 class="text-h5 font-weight-bold text-center">
           ¡Guarda tu lista de regalos!
         </h1>
@@ -47,14 +47,13 @@
               @click="facebookSignIn"
             />
           </div>
-          <v-form ref="terms-form" v-model="valid" class="d-flex mt-10 text-center">
-            <v-radio-group v-model="terminos" :rules="termRules" class="place-content-center mr-2 my-0">
-              <v-radio value="acepta" color="primary" class="">
-              </v-radio>
+          <v-form ref="terms-form" v-model="valid" class="d-flex mt-10 text-center justify-center">
+            <v-radio-group v-model="terminos" :rules="termRules" class="place-content-center my-0">
+              <v-radio value="acepta" color="primary" class=""/>
             </v-radio-group>
             <div class="text-primary mt-2">Acepta <a href="https://walmartpr.com/terminos-de-uso/" target="_blank" class="text-decoration-underline">términos y condiciones</a></div>
           </v-form>
-          <p v-show="!valid" class="text-white font-size-12">Debes aceptar terminos y condiciones</p>
+          <p v-show="terminos===null && showValid" class="text-white font-size-12">Debes aceptar terminos y condiciones</p>
         </div>
       </div>
     </div>
@@ -62,7 +61,6 @@
 </template>
 
 <script>
-// import firebase from 'firebase'
 import ActionButton from '../ActionButton'
 export default {
   name: 'SaveDialog',
@@ -81,28 +79,24 @@ export default {
     return {
       terminos: null,
       termRules: [v => !!v || ''],
-      valid: true
+      valid: true,
+      showValid: false
     }
   },
   methods: {
     googleSignIn () {
-      // this.provider = new firebase.auth.GoogleAuthProvider()
-      // firebase.auth().signInWithPopup(this.provider).then((result) => {
-      // store the user ore wathever
-      // console.log(result)
-      // this.$router.push('/home')
-      // }).catch((e) => {
-      // this.$snotify.error(e.message)
-      // console.log(e)
-      // })
       if (this.$refs['terms-form'].validate()) {
         this.$cookies.set('listUid', this.list.uid)
         window.open('https://buzondenavidad.com:1338/connect/google')
+      } else {
+        this.showValid = true
       }
     },
     facebookSignIn () {
       if (this.$refs['terms-form'].validate()) {
         window.open('https://buzondenavidad.com:1338/connect/facebook')
+      } else {
+        this.showValid = true
       }
     },
     close () {
