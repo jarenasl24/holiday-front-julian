@@ -1,15 +1,18 @@
 <template>
-  <List :list="list" @removeProduct="(product) => { removeProduct(product) }" />
+  <List :list="list" :user="user" @removeProduct="(product) => { removeProduct(product) }" />
 </template>
 
 <script>
 import List from '../../components/list/List'
 export default {
+  name: 'Index',
   components: { List },
   layout: 'redLayout',
   data () {
     return {
-      list: null
+      listUid: this.$cookies.get('listUid'),
+      list: null,
+      user: this.$cookies.get('user')
     }
   },
   async mounted () {
@@ -18,7 +21,7 @@ export default {
     })
     try {
       const lists = await this.$strapi.find('wish-lists', {
-        uid: this.$route.params.uid
+        uid: this.listUid
       })
       this.list = lists[0]
     } catch (error) {
@@ -37,4 +40,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>

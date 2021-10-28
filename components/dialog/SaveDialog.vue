@@ -87,14 +87,15 @@ export default {
     googleSignIn () {
       if (this.$refs['terms-form'].validate()) {
         this.$cookies.set('listUid', this.list.uid)
-        window.open('https://buzondenavidad.com:1338/connect/google')
+        window.location = 'https://buzondenavidad.com:1338/connect/google'
       } else {
         this.showValid = true
       }
     },
     facebookSignIn () {
       if (this.$refs['terms-form'].validate()) {
-        window.open('https://buzondenavidad.com:1338/connect/facebook')
+        this.$cookies.set('listUid', this.list.uid)
+        window.location = 'https://buzondenavidad.com:1338/connect/facebook'
       } else {
         this.showValid = true
       }

@@ -1,11 +1,13 @@
 <template>
   <div>
-    <h1 class="text-white">Cargando usuario</h1>
+    <p class="text-white text-hclassName5">Guardando lista</p>
+    <v-progress-linear indeterminate>
+    </v-progress-linear>
   </div>
 </template>
 <script>
-// import jwtDecode from 'jwt-decode'
 export default {
+  layout: 'redLayout',
   data () {
     return {
       provider: this.$route.params.provider,
@@ -14,44 +16,43 @@ export default {
       listUid: this.$cookies.get('listUid')
     }
   },
-  mounted () {
-    console.log('mounted')
-    console.log(this.$route)
-    console.log(this.listUid)
+  async mounted () {
+    // console.log('mounted')
+    // console.log(this.$route)
+    // console.log(this.listUid)
     try {
-      this.$axios({
+      const result = await this.$axios({
         method: 'GET',
         url: `https://buzondenavidad.com:1338/auth/${this.provider}/callback?access_token=${this.access_token}`
       })
-        .then((res) => {
-          console.log(res)
-          const { user } = res.data
-          if (this.listUid) {
-            this.$strapi.find('wish-lists', { uid: this.listUid }).then(
-              (result) => {
-                if (result[0]) {
-                  const list = result[0]
-                  list.users.push(user)
-                  this.$strapi.update('wish-lists', list.id, list)
-                }
-              }
-            )
-          }
-          this.$router.push(`/users/${user.id}`)
-        }).catch((er) => {
-          console.log(er)
-          // const decoded = jwtDecode(this.id_token)
-          // console.log('decoded', decoded)
-          this.$router.push(`/?userError=true&provider=${this.provider === 'google' ? 'facebook' : 'google'}`)
-        })
-      // const { jwt, user } = res
-      // store jwt and user object in localStorage
-      // this.$auth.$storage.setUniversal('jwt', jwt)
-      // this.$auth.$storage.setUniversal('user', { username: user.username, id: user.id, email: user.email })
+      const { user, jwt } = result.data
+      this.$cookies.set('user', user)
+      this.$cookies.set('jwt', jwt)
+      // console.log(user)
+      // console.log(jwt)
+      // console.log(this.listUid)
+      if (this.listUid) {
+        const wishLists = await this.$strapi.find('wish-lists', { uid: this.listUid })
+        // console.log(wishLists)
+        user.wish_list = wishLists[0]
+        // console.log(user.wish_list)
+        await this.$axios.put(`https://buzondenavidad.com:1338/users/${user.id}`, user,
+        // const response = await this.$axios.put(`http://localhost:1337/users/${user.id}`, user,
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`
+            }
+          })
+        // console.log(response)
+
+        window.location = 'https://buzondenavidad.com/user'
+      } else {
+        window.location = 'https://buzondenavidad.com/'
+      }
     } catch (e) {
       console.log(e)
+      window.location = `https://buzondenavidad.com/?userError=true&provider=${this.provider === 'google' ? 'facebook' : 'google'}`
     }
-    // this.$router.push(`/users/${user.id}`)
   }
 }
 </script>

@@ -19,7 +19,7 @@
           <v-toolbar-title />
         </v-toolbar>
       </v-container>
-      <v-container class="mb-sm-180px">
+      <v-container class="mb-sm-180px mb-sm-10">
         <Nuxt />
       </v-container>
     </div>

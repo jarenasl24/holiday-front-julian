@@ -2,7 +2,7 @@
   <v-footer
     :absolute="true"
     app
-    :class="`bg-${backgroundColor}`"
+    :class="`bg-${backgroundColor} mt-10`"
   >
     <v-container>
       <v-row>
@@ -10,7 +10,7 @@
           <v-divider :class="`border-color-${dividerColor}`" />
         </v-col>
         <v-col cols="12" md="4">
-          <img src="/logo-WPR.svg" height="40">
+          <nuxt-link to="/"><img src="/logo-WPR.svg" height="40"></nuxt-link>
         </v-col>
         <v-col cols="12" md="8" class="align-self-center">
           <v-row>

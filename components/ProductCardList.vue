@@ -46,19 +46,19 @@
         class="d-flex place-items-center font-weight-bold text-black font-size-description min-height50"
         @click="setShowNombreTooltip">
         {{ name }}
-        <v-tooltip
-          v-model="showNombreTooltip"
-          bottom
-        >
-          <template #activator="{ on, attrs }">
-            <div
-              v-bind="attrs"
-              v-on="on" >
-            </div>
-          </template>
-          <div>{{ product.name }}</div>
-        </v-tooltip>
       </div>
+      <v-tooltip
+        v-model="showNombreTooltip"
+        bottom
+      >
+        <template #activator="{ on, attrs }">
+          <div
+            v-bind="attrs"
+            v-on="on" >
+          </div>
+        </template>
+        <div>{{ product.name }}</div>
+      </v-tooltip>
       <div
         class="d-flex justify-space-between"
         :style="`min-height: ${descriptionHeight}`">
@@ -66,22 +66,23 @@
           class="align-self-center text-black font-size-description lines-2"
           @mouseenter="showDescripcionTooltip=true"
           @mouseleave="showDescripcionTooltip=false">{{ product.description }}</p>
+        <v-spacer />
         <div class="align-self-center">
           <img src="/info-tooltip.svg" width="20" alt="tooltip" @click="setShowDescripcionTooltip">
         </div>
-        <v-tooltip
-          v-model="showDescripcionTooltip"
-          bottom
-        >
-          <template v-slot:activator="{ on, attrs }">
-            <div
-              v-bind="attrs"
-              v-on="on" >
-            </div>
-          </template>
-          <div>{{product.description}}</div>
-        </v-tooltip>
       </div>
+      <v-tooltip
+        v-model="showDescripcionTooltip"
+        bottom
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <div
+            v-bind="attrs"
+            v-on="on" >
+          </div>
+        </template>
+        <div>{{product.description}}</div>
+      </v-tooltip>
     </v-card-text>
     <v-card-actions class="mt-0">
       <div
