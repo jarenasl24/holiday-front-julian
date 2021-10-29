@@ -8,8 +8,10 @@
       <Header />
     </v-container>
     <div v-if="amountGifts">
-      <BannerFilters />
-      <v-row class="mb-10">
+      <div id="bannerFilters" ref="bannerFilters">
+        <BannerFilters />
+      </div>
+      <v-row id="products" ref="products" class="mb-10" :style="`${products.length === 0 ? 'width: 1000px' : '' }`">
         <v-col v-for="product in products" :key="product.id" cols="12" md="4">
           <ProductCard :product="product" :selected="isSelectedProduct(product)" @click="() => setProduct(product)" />
         </v-col>
@@ -52,7 +54,8 @@ export default {
     return {
       alertCompletedShowed: false,
       showUserErrorDialog: Boolean(this.$route.query.userError),
-      providerUser: this.$route.query.provider
+      providerUser: this.$route.query.provider,
+      scrollTo: 0
     }
   },
   computed: {
@@ -64,6 +67,25 @@ export default {
     },
     showListCompleted () {
       return this.$store.getters['wishList/products'].length === this.$store.getters.amountGifts && !this.alertCompletedShowed
+    }
+  },
+  watch: {
+    products () {
+      console.log('cambiaron los productos')
+      if (this.scrollTo === 1) {
+        // window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight)
+        // this.$refs.products.$el.scrollIntoView({ behavior: 'smooth' }
+        // const top = this.$refs.products.scrollIntoView()
+        // window.scrollTo(0, top)
+        this.$nextTick(() => {
+          this.$refs.bannerFilters.scrollIntoView()
+          // this.$refs.bannerFilters.scrollIntoView()
+        })
+        this.scrollTo++
+      }
+      if (this.scrollTo === 0) {
+        this.scrollTo = this.scrollTo + 1
+      }
     }
   },
   methods: {

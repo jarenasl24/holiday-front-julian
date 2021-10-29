@@ -129,7 +129,7 @@ export default {
   },
   computed: {
     productIsRollback () {
-      console.log(this.product)
+      // console.log(this.product)
       return this.product.reduced_price
     },
     name () {

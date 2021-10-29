@@ -30,7 +30,7 @@
             >-->
           </div>
           <div class="pa-0 border-top-right-radius-30 border-bottom-right-radius-30 bg-primary w-40p">
-            <button type="submit" class="text-secondary pr-8 pl-7 py-3 text-uppercase font-weight-bold full-width font-size-12">Subscríbete</button>
+            <button type="submit" class="text-secondary pr-8 pl-7 py-3 text-uppercase font-weight-bold width-101p font-size-12">Subscríbete</button>
           </div>
         </div>
       </form>

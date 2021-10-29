@@ -23,7 +23,7 @@
         <div class="pa-0 border-top-right-radius-30 border-bottom-right-radius-30 bg-primary w-40p">
           <button
             @click="setAmountGifts"
-            class="text-secondary py-3 text-uppercase font-weight-bold full-width font-size-12 bg-primary border-radius-30">
+            class="text-secondary py-3 text-uppercase font-weight-bold width-101p font-size-12 bg-primary border-radius-30">
             <div class="display-flex place-content-center">
               <div class="pr-2 align-self-center ">
                 Comenzar
@@ -64,6 +64,8 @@ export default {
       await this.$store.commit('setAmountGifts', this.cantidad)
       const filtros = await this.$store.getters['filters/filters']
       await this.$store.dispatch('products/aplicarFiltros', filtros)
+      // document.getElementById('products').scrollIntoView(false)
+      // window.scrollTo(0, document.body.scrollHeight)
     }
   }
 }

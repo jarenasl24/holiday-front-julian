@@ -49,7 +49,7 @@ export default {
   components: { Filters, Footer, ActionButton },
   mounted () {
     this.width = screen.width
-    console.log(screen.width)
+    // console.log(screen.width)
   },
   data () {
     return {

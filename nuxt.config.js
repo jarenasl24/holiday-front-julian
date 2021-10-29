@@ -61,15 +61,15 @@ export default {
   googleAnalytics: {
     id: process.env.GOOGLE_ANALYTICS_ID, // Use as fallback if no runtime config is provided
     debug: {
-      enabled: true,
-      sendHitTask: true
+      enabled: false,
+      sendHitTask: false
     }
   },
 
   gtm: {
     id: process.env.GOOGLE_TAG_MANAGER_ID,
-    debug: true,
-    sendHitTask: true
+    debug: false,
+    sendHitTask: false
   },
 
   facebook: {

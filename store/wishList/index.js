@@ -34,7 +34,7 @@ export const actions = {
       products.push(product)
       this.$strapi.update('wish-lists', id, { products })
         .then((result) => {
-          console.log(result)
+          // console.log(result)
           context.commit('addProduct', product)
         })
     }

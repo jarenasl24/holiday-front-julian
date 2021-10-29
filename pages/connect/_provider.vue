@@ -50,7 +50,7 @@ export default {
         window.location = 'https://buzondenavidad.com/'
       }
     } catch (e) {
-      console.log(e)
+      // console.log(e)
       window.location = `https://buzondenavidad.com/?userError=true&provider=${this.provider === 'google' ? 'facebook' : 'google'}`
     }
   }
