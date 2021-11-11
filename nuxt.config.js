@@ -8,13 +8,22 @@ export default {
       { hid: 'description', name: 'description', content: 'Crea tu lista de regalos con Walmart Puerto Rico.' },
       { name: 'format-detection', content: 'telephone=no' },
       { hid: 'og:image', property: 'og:image', content: '/ogImage.png' },
-      { property: 'og:title', content: 'Buzón de Navidad'},
-      { property: 'og:description', content: 'Crea tu lista de regalos con Walmart Puerto Rico.'},
-      { property: 'og:url', content: 'https://buzondenavidad.com/'},
+      { property: 'og:title', content: 'Buzón de Navidad' },
+      { property: 'og:description', content: 'Crea tu lista de regalos con Walmart Puerto Rico.' },
+      { property: 'og:url', content: 'https://buzondenavidad.com/' },
       { name: 'facebook-domain-verification', content: 'shx1pw5qxn39ywicy5araksdmadlli' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }
+    ],
+    script: [
+      { src: '/js/fb-pixel.js' },
+      {
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-0BJ9S2BRL3',
+        async: true
+      },
+      { src: '/js/gtm.js' },
+      { src: '/js/analitycs.js' }
     ]
   },
 

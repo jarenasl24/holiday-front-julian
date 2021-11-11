@@ -1,7 +1,7 @@
 <template>
   <v-app class="bg-secondary">
     <v-navigation-drawer
-      v-if="width > 720"
+      v-if="width > 960"
       :value="showFilters"
       fixed
       app
@@ -50,6 +50,18 @@ export default {
   mounted () {
     this.width = screen.width
     // console.log(screen.width)
+    const body = document.getElementsByTagName('body')
+    const noscript = document.createElement('noscript')
+    const iframe = document.createElement('iframe')
+    iframe.setAttribute(
+      'src',
+      'https://www.googletagmanager.com/ns.html?id=GTM-5D8G27T'
+    )
+    iframe.setAttribute('height', 0)
+    iframe.setAttribute('width', 0)
+    iframe.setAttribute('style', 'display:none;visibility:hidden')
+    noscript.appendChild(iframe)
+    body[0].prepend(noscript)
   },
   data () {
     return {

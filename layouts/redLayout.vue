@@ -35,6 +35,20 @@ export default {
   components: {
     Footer
     // , ActionButton
+  },
+  mounted () {
+    const body = document.getElementsByTagName('body')
+    const noscript = document.createElement('noscript')
+    const iframe = document.createElement('iframe')
+    iframe.setAttribute(
+      'src',
+      'https://www.googletagmanager.com/ns.html?id=GTM-5D8G27T'
+    )
+    iframe.setAttribute('height', 0)
+    iframe.setAttribute('width', 0)
+    iframe.setAttribute('style', 'display:none;visibility:hidden')
+    noscript.appendChild(iframe)
+    body[0].prepend(noscript)
   }
 }
 </script>
