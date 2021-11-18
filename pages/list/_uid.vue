@@ -1,11 +1,11 @@
 <template>
-  <List :list="list" @removeProduct="(product) => { removeProduct(product) }" />
+  <ListComponent :list="list" @removeProduct="(product) => { removeProduct(product) }" />
 </template>
 
 <script>
-import List from '../../components/list/List'
+import ListComponent from '../../components/ListComponent'
 export default {
-  components: { List },
+  components: { ListComponent },
   layout: 'redLayout',
   data () {
     return {
@@ -13,6 +13,7 @@ export default {
     }
   },
   async mounted () {
+    this.$nuxt.setLayout('redLayout')
     this.$nextTick(() => {
       this.$nuxt.$loading.start()
     })

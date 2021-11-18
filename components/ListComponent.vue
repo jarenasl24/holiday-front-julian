@@ -1,11 +1,11 @@
 <template>
   <div>
     <img
-      src="/background-confeti-list.png"
+      src="~/static/background-confeti-list.png"
       class="hidden-sm-and-down"
       style="position: absolute;left: -20%;top: 10%;height: 80%;z-index: 0;" />
     <img
-      src="/background-confeti-list.png"
+      src="~/static/background-confeti-list.png"
       class="hidden-sm-and-down"
       style="position: absolute;right: -20%;top: 10%;height: 80%;z-index: 0;" />
     <v-row
@@ -81,28 +81,31 @@
       v-if="list"
       v-model="showShare"
       :list="list"
-      @showEmail="showEmail=true"
-      @showSms="showSms=true"
-      @close="showShare = false" />
-    <EmailDialog v-if="list" v-model="showEmail" :list="list" @close="showEmail = false" />
-    <SmsDialog v-if="list" v-model="showSms" :list="list" @close="showSms = false" />
+      @showEmail="setShowEmail"
+      @showSms="setShowSms"
+      @close="closeShare"
+    />
+    <EmailDialog v-if="list" v-model="showEmail" :list="list" @send="closeEmail" @close="showEmail = false" />
+    <SmsDialog v-if="list" v-model="showSms" :list="list" @send="closeSms" @close="showSms = false" />
     <SaveDialog
       v-if="list"
       v-model="showSave"
       :list="list"
       @close="showSave = false" />
+    <VideoDialog v-if="showVideo" v-model="showVideo" @close="showVideo = false" />
   </div>
 </template>
 
 <script>
-import ShareDialog from '../../components/dialog/ShareDialog'
-import EmailDialog from '../../components/dialog/EmailDialog'
-import SmsDialog from '../../components/dialog/SmsDialog'
-import ActionButton from '../../components/ActionButton'
-import SaveDialog from '../../components/dialog/SaveDialog'
-import ProductCardList from '../../components/ProductCardList'
+import ShareDialog from './dialog/ShareDialog'
+import EmailDialog from './dialog/EmailDialog'
+import SmsDialog from './dialog/SmsDialog'
+import ActionButton from './ActionButton'
+import SaveDialog from './dialog/SaveDialog'
+import ProductCardList from './ProductCardList'
+import VideoDialog from './dialog/VideoDialog'
 export default {
-  components: { ProductCardList, SaveDialog, ActionButton, SmsDialog, EmailDialog, ShareDialog },
+  components: { VideoDialog, ProductCardList, SaveDialog, ActionButton, SmsDialog, EmailDialog, ShareDialog },
   props: {
     list: {
       type: Object,
@@ -119,6 +122,7 @@ export default {
       showSave: false,
       showEmail: false,
       showSms: false,
+      showVideo: false,
       carousel: 0
     }
   },
@@ -146,6 +150,26 @@ export default {
     },
     deleteProduct (product) {
       this.$emit('removeProduct', product)
+    },
+    closeEmail () {
+      this.showEmail = false
+      this.showVideo = true
+    },
+    closeSms () {
+      this.showEmail = false
+      this.showVideo = true
+    },
+    closeShare () {
+      this.showShare = false
+      this.showVideo = true
+    },
+    setShowEmail () {
+      this.showShare = false
+      this.showEmail = true
+    },
+    setShowSms () {
+      this.showShare = false
+      this.showSms = true
     }
   }
 }

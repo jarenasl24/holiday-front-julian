@@ -65,12 +65,15 @@ export default {
       if (this.valid) {
         this.$strapi.create('sms', { phone: this.to, link: 'https://buzondenavidad.com/list/' + this.list.uid })
           .then((response) => {
-            this.close()
+            this.smsSend()
             // console.log(response)
           }).catch(() => {
             // console.log(error)
           })
       }
+    },
+    smsSend () {
+      this.$emit('send')
     },
     close () {
       this.$emit('close')

@@ -98,11 +98,6 @@ export default {
       required: true
     }
   },
-  data () {
-    return {
-      showEmail: false
-    }
-  },
   methods: {
     sendWhatsapp () {
       window.open('https://api.whatsapp.com/send?text=' + 'Querido Santa, esta es mi lista de regalos: https://buzondenavidad.com/list/' + this.list.uid, '_blank')
@@ -112,11 +107,9 @@ export default {
     },
     openEmail () {
       this.$emit('showEmail')
-      this.$emit('close')
     },
     openSms () {
       this.$emit('showSms')
-      this.$emit('close')
     },
     close () {
       this.$emit('close')

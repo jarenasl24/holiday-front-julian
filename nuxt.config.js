@@ -36,7 +36,7 @@ export default {
   plugins: [
     { src: '~/plugins/infiniteloading', ssr: false },
     '~/plugins/gtm',
-    '~/plugins/firebase.js'
+    { src: '~/plugins/eko.js', mode: 'client', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

@@ -20,6 +20,7 @@ export default {
     // console.log('mounted')
     // console.log(this.$route)
     // console.log(this.listUid)
+    this.$nuxt.setLayout('redLayout')
     try {
       const result = await this.$axios({
         method: 'GET',

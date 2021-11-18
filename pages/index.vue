@@ -4,6 +4,17 @@
       src="/compact.png"
       class="hidden-sm-and-down"
       style="position: absolute;left: -35%;top: 10%;height: 50%;z-index: 0;">-->
+    <v-row class="mt-10 mb-5" >
+      <v-col cols="12">
+        <iframe
+          src="https://video.eko.com/MZgvxD/embed"
+          title="Guirito"
+          style="width: 100%; height: 500px;border: 0; "
+          allowfullscreen
+          allow="autoplay; fullscreen;">
+        </iframe>
+      </v-col>
+    </v-row>
     <v-container class="mb-10 d-flex justify-center">
       <Header />
     </v-container>
@@ -50,6 +61,7 @@ import UserErrorDialog from '../components/dialog/UserErrorDialog'
 
 export default {
   components: { UserErrorDialog, ListCompleteDialog, BannerFilters, Header, Subcribe, ProductCard },
+  layout: 'default',
   data () {
     return {
       alertCompletedShowed: false,
@@ -68,6 +80,17 @@ export default {
     showListCompleted () {
       return this.$store.getters['wishList/products'].length === this.$store.getters.amountGifts && !this.alertCompletedShowed
     }
+  },
+  mounted () {
+    this.$nuxt.setLayout('default')
+    const hash = this.$route.hash
+    if (hash) {
+      const el = document.querySelector(hash)
+      el && el.scrollIntoView()
+    }
+    // const ekoPlayer = new this.$EkoPlayer('#myContainer')
+    // ekoPlayer.load('MZgvxD')
+    // ekoPlayer.invoke('audio.play', 'ping')
   },
   watch: {
     products () {

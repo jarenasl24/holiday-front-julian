@@ -47,6 +47,7 @@ import Filters from '../components/filters/Filters'
 
 export default {
   components: { Filters, Footer, ActionButton },
+  layout: 'default',
   mounted () {
     this.width = screen.width
     // console.log(screen.width)

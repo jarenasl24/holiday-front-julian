@@ -1,12 +1,11 @@
 <template>
-  <List :list="list" :user="user" @removeProduct="(product) => { removeProduct(product) }" />
+  <ListComponent :list="list" :user="user" @removeProduct="(product) => { removeProduct(product) }" />
 </template>
 
 <script>
-import List from '../../components/list/List'
+import ListComponent from '../components/ListComponent'
 export default {
-  name: 'Index',
-  components: { List },
+  components: { ListComponent },
   layout: 'redLayout',
   data () {
     return {
@@ -16,6 +15,7 @@ export default {
     }
   },
   async mounted () {
+    this.$nuxt.setLayout('redLayout')
     if (!(this.user && this.listUid)) {
       this.$router.push('/')
     }

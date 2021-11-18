@@ -31,11 +31,11 @@
 // import ActionButton from '../components/ActionButton'
 import Footer from '../components/Footer'
 export default {
-  name: 'redLayout',
   components: {
     Footer
     // , ActionButton
   },
+  layout: 'redLayout',
   mounted () {
     const body = document.getElementsByTagName('body')
     const noscript = document.createElement('noscript')

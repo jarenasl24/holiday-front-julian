@@ -81,7 +81,7 @@ export default {
       if (this.valid) {
         this.$strapi.create('mails', { email: this.to, link: 'https://buzondenavidad.com/list/' + this.list.uid })
           .then((response) => {
-            this.close()
+            this.emailSend()
             // console.log(response)
           }).catch(() => {
             // console.log(error)
@@ -90,6 +90,9 @@ export default {
     },
     close () {
       this.$emit('close')
+    },
+    emailSend () {
+      this.$emit('send')
     }
   }
 }
